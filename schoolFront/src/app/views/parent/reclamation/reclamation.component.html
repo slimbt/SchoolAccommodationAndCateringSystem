@@ -1,0 +1,120 @@
+<!-- Section: Design Block -->
+<section class="text-center">
+  <!-- Background image -->
+  <div class="p-5 bg-image" style="
+        background-image: url('assets/assets/images/videos-right-dec.png');
+        height: 300px;
+        "></div>
+  <!-- Background image -->
+
+  <div class="card mx-auto shadow-5-strong" style=" /* Centrer le formulaire horizontalement */
+        max-width: 1000px; /* Limiter la largeur maximale du formulaire */
+        margin-top: -150px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);
+        ">
+    <div class="card-body py-3 px-md-5">
+
+      <div class="row justify-content-center"> <!-- Centrer le contenu horizontalement -->
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3">Réclamation</h2>
+          <form class="text-start" (ngSubmit)="submitReclamation()" #reclamationForm="ngForm">
+
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div data-mdb-input-init class="form-outline">
+                  <input type="text" id="form3Example1" class="form-control" [value]="parentInfo.nom" name="nom" disabled/>
+                  <label class="form-label" for="form3Example1">Nom</label>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <div data-mdb-input-init class="form-outline">
+                  <input type="text" id="form3Example2" class="form-control" [value]="parentInfo.prenom" name="prenom" disabled/>
+                  <label class="form-label" for="form3Example2">Prénom</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" id="form3Example3" class="form-control" [(ngModel)]="telephone" name="telephone" pattern="[0-9]{8}" required>
+              <label class="form-label" for="form3Example3">Numéro téléphone</label>
+              <small *ngIf="reclamationForm.controls['telephone'].invalid && (reclamationForm.controls['telephone'].dirty || reclamationForm.controls['telephone'].touched)" class="text-danger">
+                <div *ngIf="reclamationForm.controls['telephone'].errors.required">Le numéro de téléphone est requis.</div>
+                <div *ngIf="reclamationForm.controls['telephone'].errors.pattern">Le numéro de téléphone doit contenir 8 chiffres.</div>
+              </small>
+            </div>
+            
+
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputPays"></label>
+              <select class="form-select" id="inputPays" name="cre" [(ngModel)]="cre" (change)="onCreChange()" required>
+                <option value="" disabled [selected]="!cre">Sélectionnez une commissériat  régionale d'éducation</option>
+                <option *ngFor="let creItem of creList" [value]="creItem">{{ creItem }}</option>
+              </select>
+            </div>
+            
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputVille"></label>
+              <select class="form-select" id="inputVille" name="libelle" [(ngModel)]="libelle" [disabled]="!cre" required>
+                <option value="" disabled [selected]="!libelle">Sélectionnez un hébergement</option>
+                <option *ngFor="let libelleItem of libelleList" [value]="libelleItem">{{ libelleItem }}</option>
+              </select>
+            </div>
+
+
+
+
+            <div class="mb-3">
+              <input type="email" id="form3Example4" class="form-control" [(ngModel)]="objet" name="objet" required>
+              <label class="form-label" for="form3Example4">Objet</label>
+            </div>
+            <small *ngIf="reclamationForm.controls['objet'].invalid && (reclamationForm.controls['objet'].dirty || reclamationForm.controls['objet'].touched)" class="text-danger">Le champ objet est requis.</small>
+            
+            <div class="mb-3">
+              <textarea id="form3Example5" class="form-control" rows="4" [(ngModel)]="message" name="message" required></textarea>
+              <label class="form-label" for="form3Example5">Message</label>
+            </div>
+            <small *ngIf="reclamationForm.controls['message'].invalid && (reclamationForm.controls['message'].dirty || reclamationForm.controls['message'].touched)" class="text-danger">Le champ message est requis.</small>
+            
+            
+
+            
+            
+            <!-- Submit button -->
+           <!-- Submit button -->
+<button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-3 btn-rose-clair" [disabled]="!reclamationForm.valid">
+  <strong> Envoyer</strong>  
+</button>
+
+
+           
+             <!-- Modal -->
+             <div class="modal fade" id="reclamationSentModal" tabindex="-1" aria-labelledby="reclamationSentModalLabel" aria-hidden="true" data-bs-backdrop="false">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reclamationSentModalLabel">Réclamation Envoyée</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Votre réclamation a été envoyée avec succès.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->
+

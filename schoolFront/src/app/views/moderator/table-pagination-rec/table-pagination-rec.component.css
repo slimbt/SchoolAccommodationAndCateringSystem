@@ -1,0 +1,151 @@
+table {
+    width: 100%;
+  }
+  /* Styles for the table */
+table.mat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for table header cells */
+  th.mat-header-cell, td.mat-cell {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Style for header row */
+  tr.mat-header-row {
+    background-color: #f8f9fa; /* Light gray background */
+  }
+  
+  /* Style for alternating rows */
+  tr.mat-row:nth-child(even) {
+    background-color: #f3f4f6; /* Lighter gray background */
+  }
+  
+  /* Style for pagination */
+  .mat-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Style for paginator buttons */
+  button.mat-paginator-navigation {
+    background-color: #007bff; /* Blue color for pagination buttons */
+    color: #fff; /* White text color */
+  }
+  
+  /* Hover effect for paginator buttons */
+  button.mat-paginator-navigation:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  /* CSS pour diminuer l'épaisseur des bordures */
+.mat-table {
+  border-collapse: collapse;
+}
+
+.mat-table th,
+.mat-table td {
+  border: 1px solid #ddd; /* Bordure fine */
+  padding: 8px; /* Espacement intérieur des cellules */
+}
+
+
+.bold-column {
+  font-weight: bold;
+}
+.accepted-status {
+  color: green;
+}
+.parent-info, .eleve-info {
+  margin-bottom: 20px;
+}
+
+.parent-info h3, .eleve-info h3{
+  color: #007bff; /* Couleur du texte */
+}
+
+.parent-info p, .eleve-info p {
+  margin-bottom: 5px;
+}
+
+.parent-info p strong, .eleve-info p strong {
+  font-weight: bold;
+}
+
+/* CSS */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.parent-info, .eleve-info {
+  width: 70%; /* Ajustez la largeur selon vos besoins */
+  margin-bottom: 20px;
+}
+
+/* Ajoutez d'autres styles selon vos besoins */
+
+.search-input {
+  color: rgb(0, 0, 0);
+  background-color: white;
+  border: 1px solid #ccc; /* Ajustez cette valeur pour une meilleure visibilité */
+}
+
+.search-input::placeholder {
+  color: #999; /* Changez la couleur du placeholder si nécessaire */
+}
+/* Styles professionnels pour le modal */
+.modal-content {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: #fff;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.close {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+}
+
+.modal-body .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.modal-body label {
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-body textarea {
+  resize: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-footer {
+  background-color: #f1f1f1;
+  border-top: none;
+  border-radius: 0 0 8
+}

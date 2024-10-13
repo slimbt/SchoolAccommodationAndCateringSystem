@@ -1,0 +1,95 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+      <div class="card-header card-header-info d-flex justify-content-between align-items-center">
+          <h4 class="card-title mb-0">Liste des réclamations</h4>
+          <div class="md-form active-cyan active-cyan-2 mb-0">
+              <input class="form-control search-input" type="text" [(ngModel)]="term" placeholder="Rechercher" aria-label="Rechercher" (input)="applyFilter()">
+          </div>
+      </div>
+      <div class="card-body table-responsive">
+        <table mat-table [dataSource]="dataSource" class="mat-table"  *ngIf="dataSource.data.length > 0; else noRestaurations">
+  
+          <!-- Define the columns -->
+          <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="{ 'bold-column': column === 'nomExpediteur' || column === 'prenomExpediteur' || column === 'telephone' || column === 'cre' || column === 'libelle'|| column === 'objet' || column === 'message' || column === 'status'    || column === 'actions' }">{{ columnNames[column] }}</th>  
+            <!-- Cellules de données -->
+            <ng-container *ngIf="column !== 'actions' && column !== 'prenom' && column !== 'status'">
+              <td mat-cell *matCellDef="let element" class="action-cell">{{ element[column] }}</td>
+            </ng-container>
+  
+            <!-- Gestion de la colonne "status" -->
+            <ng-container *ngIf="column === 'status'">
+              <td mat-cell *matCellDef="let element" class="status-cell">
+                <span class="badge badge-success rounded-pill d-inline" *ngIf="element.status === 'répondu'">Répondu</span>
+                <span class="badge badge-danger rounded-pill d-inline" *ngIf="element.status === 'refusé'">Refusé</span>
+                <span class="badge badge-info rounded-pill d-inline" *ngIf="!element.status || element.status.trim() === ''">En attente</span>
+              </td>
+            </ng-container>
+  
+            <!-- Gestion de la colonne "prenom" -->
+            <ng-container *ngIf="column === 'prenom'">
+              <td mat-cell *matCellDef="let element" class="prenom-cell">{{ element.prenom }}</td>
+            </ng-container>
+  
+            <!-- Gestion de la colonne "actions" -->
+           <ng-container *ngIf="column === 'actions'">
+    <td mat-cell *matCellDef="let element" class="action-cell">
+      <button *ngIf="!element.isProcessed" type="button" class="btn btn-success btn-sm btn-rounded" (click)="replyToComplaint(element)">Répondre</button>
+
+      <button *ngIf="!element.isProcessed" type="button" class="btn btn-danger btn-sm btn-rounded" (click)="confirmDeleteHebergement(element.id)">Supprimer</button>
+      <button *ngIf="element.isProcessed" type="button" class="btn btn-secondary btn-sm btn-rounded" disabled>Traité</button>
+      <button type="button" class="btn btn-warning btn-sm btn-rounded" data-toggle="modal" data-target="#infoModalll" (click)="showDetails(element)">Info</button>
+      <button *ngIf="element.isProcessed" type="button" class="btn btn-dark btn-sm btn-rounded" (click)="annuler(element)">Annuler</button>
+    </td>
+  </ng-container>
+  
+          </ng-container>
+  
+          <!-- En-tête de colonne -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+          <!-- Lignes de données -->
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <!-- Paginator -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+        <!-- Message when there are no restaurations -->
+    <ng-template #noRestaurations>
+      <div>Vous n'avez pas encore des réclamations</div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- Message affiché lorsque employeeInfo.id_cre est null -->
+<ng-template #noCreMessage>
+  <div>Vous n'êtes pas encore affecté par un CRE.</div>
+</ng-template>
+  
+  <!-- Modal Bootstrap -->
+  <div class="modal fade" id="infoModalll" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="infoModalLabel">Détails de l'expéditeur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="parent-info">
+            <h3>Les informations du Parent</h3>
+            <p><strong>Nom :</strong> {{infoPP.nom}}</p>
+            <p><strong>Prénom :</strong> {{infoPP.prenom}}</p>
+            <p><strong>CIN :</strong> {{infoPP.cin}}</p>
+            <p><strong>Profession :</strong> {{infoPP.profession}}</p>
+            <p><strong>Téléphone :</strong> {{infoPP.telephone}}</p>
+            <p><strong>Adresse :</strong> {{infoPP.adresse}}</p>
+          </div>
+     
+         
+        </div>
+      </div>
+    </div>
+  </div>
+ 

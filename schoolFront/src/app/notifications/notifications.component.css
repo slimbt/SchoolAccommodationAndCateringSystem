@@ -1,0 +1,97 @@
+.card {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  .card-header {
+    padding: 20px;
+    border-bottom: 1px solid #e3e3e3;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .card-header-success {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .card-title {
+    margin: 0;
+  }
+  
+  .card-category {
+    font-size: 14px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .custom-file-upload {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  
+  .custom-file-upload label {
+    display: block;
+    margin-bottom: 5px; /* Ajouter un espace entre le label et l'input */
+  }
+  
+  .custom-file-upload input[type="file"] {
+    font-size: 100px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-file-upload .file-label {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.custom-file-upload input[type="file"]:focus + .file-label,
+.custom-file-upload input[type="file"]:hover + .file-label {
+    background-color: #e6e6e6;
+}
+
+  
+  .text-success {
+    color: #4caf50;
+  }
+  
+  .btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-success:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+  }
+  .img-thumbnail, .img-item {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensure the image fits the defined dimensions */
+  }

@@ -1,0 +1,195 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <!-- Formulaire -->
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Formulaire d'Inscription</h4>
+                        <p class="card-category">Inscrivez un nouveau parent</p>
+                    </div>
+                    <div class="card-body">
+                        <form #ajoutParentForm="ngForm" (ngSubmit)="addParent(); ajoutParentForm.resetForm()" novalidate enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="inputUsername" class="text-success"> <strong>Nom d'utilisateur</strong>  </label>
+                                    <input type="text" [(ngModel)]="parentForm.username" class="form-control" id="inputUsername" name="username" placeholder="Nom d'utilisateur" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutParentForm.controls['username']?.invalid && (ajoutParentForm.controls['username']?.dirty || ajoutParentForm.controls['username']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['username']?.errors?.required">Username est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['username']?.errors?.pattern">Username doit contenir uniquement des caractères.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputEmail" class="text-success"> <strong>Email</strong>  </label>
+                                    <input type="email" [(ngModel)]="parentForm.email" class="form-control" id="inputEmail" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" (input)="validateEmail()">
+                                    <div *ngIf="ajoutParentForm.controls['email']?.invalid && (ajoutParentForm.controls['email']?.dirty || ajoutParentForm.controls['email']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['email']?.errors.required">Email est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['email']?.errors.pattern">Email invalide.</div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="form-group col-md-2">
+                                    <label for="inputPassword" class="text-success"> <strong>Mot de passe</strong>  </label>
+                                    <input type="password" [(ngModel)]="parentForm.password" class="form-control" id="inputPassword" name="password" placeholder="Mot de passe" required minlength="8" maxlength="20">
+                                    <div *ngIf="ajoutParentForm.controls['password']?.invalid && (ajoutParentForm.controls['password']?.dirty || ajoutParentForm.controls['password']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['password']?.errors.required">Password est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['password']?.errors.minlength">Le mot de passe doit contenir au moins 6 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['password']?.errors.maxlength">Le mot de passe ne peut pas dépasser 40 caractères.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputNom" class="text-success"> <strong>Nom</strong>  </label>
+                                    <input type="text" [(ngModel)]="parentForm.nom" class="form-control" id="inputNom" name="nom" placeholder="Nom" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutParentForm.controls['nom']?.invalid && (ajoutParentForm.controls['nom']?.dirty || ajoutParentForm.controls['nom']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['nom']?.errors?.required">Nom est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['nom']?.errors?.pattern">Nom doit contenir uniquement des caractères.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <label for="inputPrenom" class="text-success"> <strong>Prénom</strong>    </label>
+                                    <input type="text" [(ngModel)]="parentForm.prenom" class="form-control" id="inputPrenom" name="prenom" placeholder="Prénom" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutParentForm.controls['prenom']?.invalid && (ajoutParentForm.controls['prenom']?.dirty || ajoutParentForm.controls['prenom']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['prenom']?.errors?.required">Prénom est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['prenom']?.errors?.pattern">Prénom doit contenir uniquement des caractères.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputCIN" class="text-success"> <strong>CIN</strong>  </label>
+                                    <input type="text" [(ngModel)]="parentForm.cin" class="form-control" id="inputCIN" name="cin" placeholder="CIN" required pattern="^[0-9]+$" minlength="8" maxlength="8">
+                                    <div *ngIf="ajoutParentForm.controls['cin']?.invalid && (ajoutParentForm.controls['cin']?.dirty || ajoutParentForm.controls['cin']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['cin']?.errors?.required">CIN est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['cin']?.errors?.minlength">CIN doit contenir au moins 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['cin']?.errors?.maxlength">CIN ne peut pas dépasser 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['cin']?.errors?.pattern">CIN doit contenir uniquement des chiffres.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputSalary" class="text-success"> <strong>Profession</strong>   </label>
+                                    <input type="text" [(ngModel)]="parentForm.profession" class="form-control" id="inputSalary" name="profession" placeholder="Profession" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutParentForm.controls['profession']?.invalid && (ajoutParentForm.controls['profession']?.dirty || ajoutParentForm.controls['profession']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['profession']?.errors.required">Profession est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['profession']?.errors?.pattern">Profession doit contenir uniquement des caractères.</div>
+
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputSalary" class="text-success"> <strong>Adresse</strong> </label>
+                                    <input type="text" [(ngModel)]="parentForm.adresse" class="form-control" id="inputSalary" name="adresse" placeholder="Adresse" required >
+                                    <div *ngIf="ajoutParentForm.controls['adresse']?.invalid && (ajoutParentForm.controls['adresse']?.dirty || ajoutParentForm.controls['adresse']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['adresse']?.errors.required">Adresse est requis.</div>
+                                     
+
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <label for="inputTelephone" class="text-success"> <strong>Téléphone</strong>   </label>
+                                    <input type="text" [(ngModel)]="parentForm.telephone" class="form-control" id="inputTelephone" name="telephone" placeholder="Téléphone" required pattern="^[0-9]+$" minlength="8" maxlength="8">
+                                    <div *ngIf="ajoutParentForm.controls['telephone']?.invalid && (ajoutParentForm.controls['telephone']?.dirty || ajoutParentForm.controls['telephone']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['telephone']?.errors?.required">Téléphone est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['telephone']?.errors?.minlength">Téléphone doit contenir au moins 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['telephone']?.errors?.maxlength">Téléphone ne peut pas dépasser 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutParentForm.controls['telephone']?.errors?.pattern">Téléphone doit contenir uniquement des chiffres.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group custom-file-upload ml-2">
+                                    <label for="imageFile" class="text-success"><strong>Photo de profil</strong></label>
+                                    <input id="imageFile" name="imageFile" type="file" (change)="onPhotoChange($event, fileLabel)">
+                                    <span class="file-label" #fileLabel>Choisissez un fichier...</span>
+                                </div>
+                                
+                                  <div class="form-group col-12 text-center mt-4">
+                                    <button type="submit" [disabled]="!ajoutParentForm.valid" class="btn btn-success">
+                                        Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        
+                    </div>
+                </div>
+               
+
+<!-- Tableau des parents -->
+<div class="card">
+    <div class="card-header card-header-gray d-flex justify-content-between align-items-center">
+        <div>
+        <h4 class="card-title mb-0">Liste des parents</h4>
+        <p class="card-category">Consultez les détails des parents</p>
+        </div>
+        <!-- Search form -->
+        <div class="md-form active-cyan active-cyan-2 mb-0">
+            <input class="form-control search-input" type="text" [(ngModel)]="term" placeholder="Rechercher" aria-label="Rechercher">
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="text-primary">
+                    <th class="text-center text-azrek">  <strong>Nom d'utilisateur</strong></th>
+                    <th class="text-center text-azrek"> <strong>Email</strong></th>
+                    
+                    <th class="text-center text-azrek">  <strong>Nom</strong></th>
+                    <th class="text-center text-azrek"> <strong>Prénom</strong></th>
+                    <th class="text-center text-azrek">   <strong>CIN</strong></th>
+                    <th class="text-center text-azrek">  <strong>profession</strong></th>
+                    <th class="text-center text-azrek">  <strong>Adresse</strong></th>
+                    <th class="text-center text-azrek">  <strong>Téléphone</strong></th>
+                    <th class="text-center text-azrek"> <strong>Actions</strong></th> <!-- Ajout de la colonne Actions -->
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of parents | filetrage:term; let i = index ">
+                        <ng-container *ngIf="!e.isEdit; else editRow">
+                            <td class="text-center">{{ e.username }}</td>
+                            <td class="text-center">{{ e.email }}</td>
+                         
+                            <td class="text-center">{{ e.nom }}</td>
+                            <td class="text-center">{{ e.prenom }}</td>
+                            <td class="text-center">{{ e.cin }}</td>
+                            <td class="text-center">{{ e.profession }}</td>
+                            <td class="text-center">{{ e.adresse }}</td>
+                            <td class="text-center">{{ e.telephone }}</td>
+                            <td class="td-actions text-center">
+                                <button mat-raised-button type="button" matTooltip="Modifier" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEdit(e)">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Supprimer" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="confirmDeleteParent(e.id)">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </td>
+                        </ng-container>
+                        <ng-template #editRow>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.username"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.email"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.nom"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.prenom"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.cin"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.profession"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.adresse"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.telephone"></td>
+                            <td class="td-actions text-center">
+                                <button mat-raised-button type="button" matTooltip="Enregistrer" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onUpdate(e)">
+                                    <i class="material-icons">save</i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Annuler" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon" (click)="onCancel(e)">
+                                    <i class="material-icons">cancel</i>
+                                </button>
+                            </td>
+                        </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div> 

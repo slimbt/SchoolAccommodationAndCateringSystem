@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-gray d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title mb-0">Liste des Feedbacks</h4>
+                            <p class="card-category">Consultez les détails des feedbacks</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="text-primary">
+                                    <th class="text-center text-azrek"><strong>Parent</strong></th>
+                                    <th class="text-center text-azrek"><strong>Rating</strong></th>
+                                    <th class="text-center text-azrek"><strong>Feedback</strong></th>
+                                    <th class="text-center text-azrek"><strong>Status</strong></th>
+                                    <th class="text-center text-azrek"><strong>Actions</strong></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let feedback of feedbacks; let i = index">
+                                        <td class="text-center">
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <img *ngIf="getParentPhotoUrl(feedback.idParent)" [src]="getParentPhotoUrl(feedback.idParent)" alt="Avatar" class="w-6 shadow-2 mr-2" style="width: 45px; height: 45px" />
+                                                <img *ngIf="!getParentPhotoUrl(feedback.idParent)" src="assets/assets/images/pdp.jpg" alt="Default Avatar" class="w-6 shadow-2 mr-2" style="width: 45px; height: 45px" />
+                                                <span>{{ getParentFullName(feedback.idParent) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div [innerHTML]="generateStarRating(feedback.rating)" class="star-rating yellow"></div>
+                                        </td>
+                                        <td class="text-center">{{ feedback.feedback }}</td>
+                                        <td class="text-center">{{ feedback.status ? feedback.status : 'En attente' }}</td>
+
+                                        <td class="td-actions text-center">
+                                            <button mat-raised-button type="button" matTooltip="Publier" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="publish(feedback.id)">
+                                                <i class="material-icons">publish</i>
+                                            </button>
+                                            
+                                            <button mat-raised-button type="button" matTooltip="Supprimer" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="confirmDelete(feedback.id)">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+ 
+  <p-carousel #pCarousel [value]="feedbacks" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="4000">
+    <ng-template let-feedback pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 item">
+        <div class="mb-3">
+            <!-- Ajouter une image (optionnel) -->
+            <img src="assets/assets/images/{{getParentPhoto(feedback.idParent)}}" alt="Avatar" class="w-6 shadow-2" style="width: 45px; height: 45px" />
+          <br>
+          <!-- Afficher les étoiles représentant le rating -->
+          <div [innerHTML]="generateStarRating(feedback.rating)" class="star-rating yellow"></div>
+        </div>
+        <div>
+          <!-- Afficher les détails du feedback -->
+          <h6 class="mt-0 mb-3">Feedback: {{ feedback.feedback }}</h6>
+          <p class="font-medium">Parent: {{ getParentFullName(feedback.idParent) }}</p>
+        </div>
+    </div>
+    </ng-template>
+  </p-carousel>
+  

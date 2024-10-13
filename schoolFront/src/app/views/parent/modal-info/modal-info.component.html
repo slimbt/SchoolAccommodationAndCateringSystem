@@ -1,0 +1,8 @@
+<div class="modal" [ngClass]="{'is-active': showModal}">
+    <div class="modal-background"(click)="closeModal.emit()"></div>
+    <div class="modal-content">
+       <p>hedha houa l modal ejddud</p>
+        <ng-content></ng-content>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="closeModal.emit()"></button>
+</div>

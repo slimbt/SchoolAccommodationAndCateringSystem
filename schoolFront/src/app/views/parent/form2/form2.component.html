@@ -1,0 +1,124 @@
+<div id="pricing" class="pricing-tables">
+    <div class="tables-right-dec">
+      <img src="assets/assets/images/tables-right-dec.png" alt="">
+    </div>
+  
+    <section class="text-center text-lg-start">
+      <div class="container py-4">
+        <div class="row g-0 align-items-center">
+          <!-- Colonne du formulaire -->
+          <div class="col-lg-6 mb-5 mb-lg-0 form-col">
+            <div class="card cascading-right bg-body-tertiary form-card" style="backdrop-filter: blur(30px);">
+              <div class="card-body p-5 shadow-5 text-center">
+                <h2 class="fw-bold mb-5">Demande de restauration</h2>
+                <form (ngSubmit)="onSubmit()" #form="ngForm">
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example1" class="form-control form-control-dark" [value]="parentInfo.nom" name="nom" disabled>
+                        <label class="form-label" for="form3Example1">Nom</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example2" class="form-control form-control-dark" [value]="parentInfo.prenom" name="prenom" disabled>
+                        <label class="form-label" for="form3Example2">Prénom</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example3" class="form-control form-control-dark" [value]="datedebut" name="datedebut" disabled>
+                        <label class="form-label" for="form3Example3">Date début</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example4" class="form-control form-control-dark" [value]="datefin" name="datefin" disabled>
+                        <label class="form-label" for="form3Example4">Date fin</label>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="form-outline mb-4">
+    
+    <label class="form-label" *ngIf="!selectedEleve">Sélectionnez votre enfant</label>
+  
+   
+    <select class="form-select" id="inputEleve" name="selectedEleve" required [(ngModel)]="selectedEleve" #selectedEleveInput="ngModel">
+      <option value="" disabled [selected]="!selectedEleve">Sélectionnez votre enfant</option>
+   
+      <option *ngFor="let eleve of eleves" [ngValue]="eleve">{{ eleve.nom }} {{ eleve.prenom }}</option>
+    </select>
+  
+   
+    <div *ngIf="selectedEleveInput.invalid && (selectedEleveInput.dirty || selectedEleveInput.touched)" class="text-danger">
+      Sélectionnez un enfant.
+    </div>
+  </div>
+  
+  
+  <div class="form-outline mb-4">
+    <label class="form-label" for="inputPays"></label>
+    <select class="form-select" id="inputPays" name="cre" [(ngModel)]="cre" (change)="onCreChange()" required>
+      <option value="" disabled [selected]="!cre">Sélectionnez une commissériat  régionale d'éducation</option>
+      <option *ngFor="let creItem of creList" [value]="creItem">{{ creItem }}</option>
+    </select>
+  </div>
+  
+  <div class="form-outline mb-4">
+    <label class="form-label" for="inputVille"></label>
+    <select class="form-select" id="inputVille" name="libelle" [(ngModel)]="libelle" [disabled]="!cre" required>
+      <option value="" disabled [selected]="!libelle">Sélectionnez un restaurant</option>
+      <option *ngFor="let libelleItem of libelleList" [value]="libelleItem">{{ libelleItem }}</option>
+    </select>
+  </div>
+  
+  
+                  <div class="radio-custom">
+                    <input type="radio" id="simpleRadio" name="type" value="1 repas" (change)="onTypeChambreChange('1 repas')" required>
+                    <label for="simpleRadio">1 repas</label>
+                  </div>
+  
+                  <div class="radio-custom">
+                    <input type="radio" id="partagesRadio" name="type" value="2 repas" (change)="onTypeChambreChange('2 repas')" required>
+                    <label for="partagesRadio">2 repas</label>
+                  </div>
+                  <div class="radio-custom">
+                    <input type="radio" id="repasRadio" name="type" value="3 repas" (change)="onTypeChambreChange('3 repas')" required>
+                    <label for="repasRadio">3 repas</label>
+                  </div>
+  
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked required>
+                    <label class="form-check-label" for="form2Example33">Vous avez le droit de modifier la demande après l'enregistrement</label>
+                  </div>
+  
+                  <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="form.invalid">
+                    Enregistrer
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Colonne du carrousel -->
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" #myCarousel>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="assets/assets/images/a1.png" class="d-block w-100 rounded-4 shadow-4" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/assets/images/a2.png" class="d-block w-100 rounded-4 shadow-4" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <img src="assets/assets/images/a3.png" class="d-block w-100 rounded-4 shadow-4" alt="Third slide">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

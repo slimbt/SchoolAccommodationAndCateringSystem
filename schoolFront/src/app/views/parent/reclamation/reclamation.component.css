@@ -1,0 +1,38 @@
+.btn-rose-clair {
+    background-color: #ffcccc; /* Couleur rose clair de votre choix */
+    color: #000; /* Couleur du texte */
+  }
+  /* Styles for form validation */
+
+/* Style pour le fond du modal */
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+/* Style pour le titre du modal */
+.modal-title {
+  color: #333;
+}
+
+/* Style pour le bouton de fermeture */
+.btn-close {
+  color: #aaa;
+}
+
+/* Style pour le bouton Fermer */
+.btn-secondary {
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Hover sur le bouton Fermer */
+.btn-secondary:hover {
+  background-color: #555;
+}
+
+/* Style pour le corps du modal */
+.modal-body {
+  color: #555;
+}

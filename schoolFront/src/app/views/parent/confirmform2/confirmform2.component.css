@@ -1,0 +1,64 @@
+/* Positionnement de l'image à droite du titre "Sign into your account" */
+.form-image {
+    position: absolute;
+    top: 50%; /* Position verticale centrée */
+    right: -300px; /* Décalage supplémentaire vers la droite */
+    transform: translateY(-50%);
+    height: 300px; /* Hauteur de l'image agrandie */
+    width: auto; /* Ajustement automatique de la largeur */
+    opacity: 0.7; /* Opacité de l'image */
+  }
+  /* confirmform1.component.css */
+
+:host ::ng-deep .custom-dialog {
+  width: 30rem;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+/* Styling des composants enfants du p-dialog */
+:host ::ng-deep .custom-dialog .form-group {
+  margin-bottom: 1rem;
+}
+
+:host ::ng-deep .custom-dialog .form-group label {
+  font-weight: bold;
+}
+
+/* Boutons du footer */
+:host ::ng-deep .custom-dialog .text-right button {
+  margin-left: 0.5rem;
+}
+:host ::ng-deep .custom-dialog label {
+  color: green; /* Couleur verte pour les titres */
+}
+
+
+
+/* Sélecteur pour les options en gras dans la liste déroulante */
+:host ::ng-deep .custom-dialog select option {
+  font-weight: bold; /* Texte en gras pour les options */
+}
+
+
+
+.bold-option {
+  font-weight: bold;
+}
+/* Style personnalisé pour l'input de message */
+.custom-textarea {
+  resize: none; /* Empêche le redimensionnement du textarea par l'utilisateur */
+  border: 1px solid #ced4da; /* Ajoute une bordure grise */
+  border-radius: 8px; /* Arrondit les coins */
+  padding: 10px; /* Ajoute un espacement intérieur */
+  font-size: 16px; /* Taille de police */
+}
+
+.custom-textarea:focus {
+  border-color: #6c757d; /* Change la couleur de la bordure lorsqu'il est en focus */
+  outline: none; /* Supprime l'effet de focus par défaut */
+}
+.radio-custom label {
+  font-weight: bold;
+  margin-right: 10px;
+}

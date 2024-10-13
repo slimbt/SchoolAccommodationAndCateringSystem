@@ -1,0 +1,61 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <section class="vh-100" style="background-image: url('assets/assets/images/portfolio-left-dec.png'); background-size: cover; background-position: center;">
+
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block" style="padding: 0;">
+                  <img src="./assets/assets/images/ins.jpg" alt="profile-img" class="img-fluid form-image" style="height: 100%; width: 100%; object-fit: cover; border-radius: 1rem 0 0 1rem;">
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                  <div class="card-body p-4 p-lg-5 text-black">
+                    <form *ngIf="!isSuccessful" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                      <div class="d-flex align-items-center mb-3 pb-1">
+                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                        <span class="h1 fw-bold mb-0">Inscription</span>
+                      </div>
+                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Créez votre compte</h5>
+                      <div class="form-outline mb-4">
+                        <label for="username" class="form-label">Nom d'utilisateur</label>
+                        <input type="text" id="username" class="form-control form-control-lg" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.invalid }">
+                        <div class="invalid-feedback" *ngIf="username.invalid">
+                          <div *ngIf="username.errors?.required">Nom d'utilisateur requis</div>
+                          <div *ngIf="username.errors?.minlength">Le nom d'utilisateur doit comporter au moins 3 caractères</div>
+                          <div *ngIf="username.errors?.maxlength">Le nom d'utilisateur doit comporter au maximum 20 caractères</div>
+                        </div>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control form-control-lg" name="email" [(ngModel)]="form.email" required email #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }">
+                        <div class="invalid-feedback" *ngIf="email.invalid">
+                          <div *ngIf="email.errors?.required">Email requis</div>
+                          <div *ngIf="email.errors?.email">Email invalide</div>
+                        </div>
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label for="password" class="form-label">Mot de passe</label>
+                        <input type="password" id="password" class="form-control form-control-lg" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }">
+                        <div class="invalid-feedback" *ngIf="password.invalid">
+                          <div *ngIf="password.errors?.required">Mot de passe requis</div>
+                          <div *ngIf="password.errors?.minlength">Le mot de passe doit comporter au moins 6 caractères</div>
+                        </div>
+                      </div>
+                      <div class="pt-1 mb-4">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">S'inscrire</button>
+                      </div>
+                      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">Échec de l'inscription !<br />{{ errorMessage }}</div>
+                    </form>
+                    <div class="alert alert-success" *ngIf="isSuccessful">Votre inscription a réussi !</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

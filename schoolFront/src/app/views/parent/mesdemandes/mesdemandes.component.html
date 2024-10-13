@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <p-dropdown [options]="toggleOptions" [(ngModel)]="selectedOption" (ngModelChange)="onToggleChange()"></p-dropdown>
+  
+  <div *ngIf="filteredDemandes.length > 0; else noDemandes" class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let demande of filteredDemandes" class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <!-- Vérifiez si photoPath est défini -->
+            <ng-container *ngIf="parentInfo.photoPath">
+              <!-- Si oui, affichez l'image -->
+              <img src="assets/assets/images/{{ parentInfo.photoPath }}" alt="Profile Image" class="rounded-circle me-3 img-rounded-circle">
+            </ng-container>
+            <!-- Si non, utilisez une image par défaut -->
+            <ng-container *ngIf="!parentInfo.photoPath">
+              <img src="assets/assets/images/pdp.jpg" alt="Profile Image" class="rounded-circle me-3 img-rounded-circle">
+            </ng-container>
+            <div>
+              <h5 class="card-title mb-0">{{ demande.nom }} {{ demande.prenom }}</h5>
+              <p class="text-muted">{{ demande.selectedEleve }}</p>
+            </div>
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted">{{ demande.cre }}</h6>
+          <p class="card-text">{{ demande.libelle }}</p>
+          <p *ngIf="demande.typeChambre" class="card-text"><strong>Type de Chambre:</strong> {{ demande.typeChambre }}</p>
+          <p *ngIf="demande.type" class="card-text"><strong>Type:</strong> {{ demande.type }}</p>
+          <p class="card-text"><strong>Dates:</strong> {{ demande.datedebut }} - {{ demande.datefin }}</p>
+          <p *ngIf="demande.message" class="card-text"><strong>Message:</strong> {{ demande.message }}</p>
+          <p class="card-text"><strong>Envoyée le:</strong> {{ demande.createdAt }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+          <span class="badge" [ngClass]="getBadgeClass(demande.status)">{{ demande.status || 'En attente' }}</span>
+          <button *ngIf="demande.status === 'accepté'" class="btn btn-primary ml-2 btn-imprimer" (click)="imprimerPDF(demande)">Imprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noDemandes>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Pas encore de demandes</h5>
+        <p class="card-text">Il n'y a pas encore de demandes à afficher.</p>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,67 @@
+/* pagesucce.component.css */
+
+/* Styles for the overall container */
+#pricing {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .tables-left-dec,
+  .tables-right-dec {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+  }
+  
+  .tables-left-dec img,
+  .tables-right-dec img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Card styling */
+  .card {
+    background-color: #ffffff;
+    border: none;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .text-success {
+    color: #28a745;
+  }
+  
+  .img-fluid {
+    max-width: 150px;
+    height: auto;
+  }
+  .btn-rose-clair {
+    background-color: #ffcccc; /* Couleur rose clair de votre choix */
+    color: #000; /* Couleur du texte */
+  }
+  /* pagesucce.component.css */
+
+/* Style personnalisé pour l'input de commentaire */
+.custom-textarea {
+    resize: none; /* Empêche le redimensionnement du textarea par l'utilisateur */
+    border: 1px solid #ced4da; /* Ajoute une bordure grise */
+    border-radius: 8px; /* Arrondit les coins */
+    padding: 10px; /* Ajoute un espacement intérieur */
+    font-size: 16px; /* Taille de police */
+  }
+  
+  .custom-textarea:focus {
+    border-color: #6c757d; /* Change la couleur de la bordure lorsqu'il est en focus */
+    outline: none; /* Supprime l'effet de focus par défaut */
+  }
+  .custom-card {
+    box-shadow: 0 8px 16px rgba(255, 105, 180, 0.8); /* Ombre rose plus grande */
+  }
+  

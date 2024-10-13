@@ -1,0 +1,181 @@
+<div id="pricing" class="pricing-tables">
+    <div class="tables-left-dec">
+      <img src="assets/assets/images/tables-left-dec.png" alt="">
+    </div>
+    <div class="tables-right-dec">
+      <img src="assets/assets/images/tables-right-dec.png" alt="">
+    </div>
+  
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card shadow-lg" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <form (submit)="sendFormData()">
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                            <span class="h2 fw-bold mb-0" style="white-space: nowrap;"> <strong> Confirmer votre demande</strong>  </span>
+                                        </div>
+  
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Vérifier vos données.</h5>
+  
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <input type="text" id="nommPrenom" class="form-control form-control-lg" [value]="hebergementData.nom + ' ' + hebergementData.prenom" disabled />
+                                                    <label class="form-label" for="nommPrenom">Nom et Prénom :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <input type="text" id="duree" class="form-control form-control-lg" [value]="hebergementData.datedebut + ' - ' + hebergementData.datefin" disabled />
+                                                    <label class="form-label" for="duree">Durée :</label>
+                                                </div>
+                                            </div>
+                                        </div>
+  
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                  <input type="text" id="nomPrenom" class="form-control form-control-lg" value="{{ this.hebergementData.selectedEleveNom }} {{ this.hebergementData.selectedElevePrenom }}" disabled />
+                                                    <label class="form-label" for="enfant">Enfant :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline">
+                                                    <input type="text" id="cre" class="form-control form-control-lg" [value]="hebergementData.cre" disabled />
+                                                    <label class="form-label" for="cre">CRE :</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                           
+                                        <div class="row mb-4">
+                                          <div class="col-md-6">
+                                              <div class="form-outline">
+                                                  <input type="text" id="libelle" class="form-control form-control-lg" [value]="hebergementData.libelle" disabled />
+                                                  <label class="form-label" for="libelle">Libellé :</label>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="form-outline">
+                                                  <input type="text" id="type" class="form-control form-control-lg" [value]="hebergementData.type" disabled />
+                                                  <label class="form-label" for="typeChambre">Type :</label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                  
+                                      <div class="row mb-4">
+                                          <div class="col">
+                                            <div class="form-outline">
+                                              <textarea id="message" class="form-control custom-textarea" rows="4" [(ngModel)]="hebergementData.message"></textarea>
+                                              <label class="form-label" for="message">Vous pouvez ajouter un message :</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                      
+  
+                                        <div class="row">
+                                          <div class="col-md-6 mb-4">
+                                            <button type="submit" class="btn btn-success btn-block">
+                                              Envoyer
+                                            </button>
+                                          </div>
+                                          
+                                          <div class="col-md-6 mb-4">
+                                            <button type="button" class="btn btn-warning btn-block" (click)="showDialog()">
+                                              Modifier
+                                            </button>
+                                          </div>
+                                        </div>
+                                       
+                                                                              
+                                        <p-dialog header="Modifier les données d'hébergement" [(visible)]="visible" [modal]="true" class="custom-dialog">
+                                          <!-- Contenu du dialogue -->
+                                          <span class="p-text-secondary block mb-3">Mettez à jour les informations d'hébergement.</span>
+                                        
+                                          
+                                          <div class="form-group">
+                                            <label for="nommPrenom"> <strong > Nom et Prénom: </strong></label>
+                                            <input type="text" id="nommPrenom" class="form-control" [value]="hebergementData.nom + ' ' + hebergementData.prenom" disabled>
+                                          </div>
+                                        
+                                          <div class="form-group">
+                                            <label for="duree"> <strong>   Durée: </strong> </label>
+                                            <input type="text" id="duree" class="form-control" [value]="hebergementData.datedebut+ ' - ' + hebergementData.datefin" disabled>
+                                          </div>
+                                        
+                                          <div class="form-group ">
+                                              <label for="enfant">  <strong>   Enfant:  </strong> </label>
+                                              <select class="form-select custom-dialog" id="inputEleve" name="selectedEleve" required [(ngModel)]="selectedEleve" #selectedEleveInput="ngModel">
+                                                  <option value="" disabled [selected]="!selectedEleve">Sélectionnez votre enfant</option>
+                                                  <option *ngFor="let eleve of eleves" [ngValue]="eleve" [ngClass]="{ 'bold-option': eleve === selectedEleve }">{{ eleve.nom }} {{ eleve.prenom }}</option>
+                                                </select>
+                                                
+                                              </div>
+  
+                                        
+                                              <div class="form-group ">
+                                                  <label for="inputPays">  <strong>   CRE:  </strong></label>
+                                                  <select class="form-select" id="inputPays" name="cre" [(ngModel)]="cre" (change)="onCreChange()" required>
+                                                    <option value="" disabled [selected]="!cre">Sélectionnez une commissériat régionale d'éducation</option>
+                                                    <option *ngFor="let creItem of creList" [value]="creItem">{{ creItem }}</option>
+                                                  </select>
+                                                </div>
+                                        
+                                                <div class="form-group ">
+                                                  <label for="inputVille"> <strong>   Libellé:  </strong></label>
+                                                  <select class="form-select" id="inputVille" name="libelle" [(ngModel)]="libelle" [disabled]="!cre" required>
+                                                    <option value="" disabled [selected]="!libelle">Sélectionnez un foyer</option>
+                                                    <option *ngFor="let libelleItem of libelleList" [value]="libelleItem">{{ libelleItem }}</option>
+                                                  </select>
+                                                </div>
+                                                
+  
+                                                <div class="radio-custom">
+                                                  <input type="radio" id="simpleRadio" name="type" value="1 repas" (change)="onTypeChambreChange('1 repas')" required>
+                                                  <label for="simpleRadio">1 repas</label>
+                                                </div>
+                                
+                                                <div class="radio-custom">
+                                                  <input type="radio" id="partagesRadio" name="type" value="2 repas" (change)="onTypeChambreChange('2 repas')" required>
+                                                  <label for="partagesRadio">2 repas</label>
+                                                </div>
+                                                <div class="radio-custom">
+                                                    <input type="radio" id="repasRadio" name="type" value="3 repas" (change)="onTypeChambreChange('3 repas')" required>
+                                                    <label for="repasRadio">3 repas</label>
+                                                  </div>
+                                        
+                                          <div class="form-group">
+                                            <label for="message"> <strong>  Message: </strong></label>
+                                            <textarea id="message" class="form-control" rows="4" [(ngModel)]="hebergementData.message"></textarea>
+                                          </div>
+                                        
+                                          <!-- Boutons dans le footer du Dialog -->
+                                          <div class="text-right">
+                                            <button type="button" class="btn btn-secondary" (click)="hideDialog()">Annuler</button>
+                                            <button type="button" *ngIf="!modificationApplied" class="btn btn-success" (click)=" saveChanges()">Enregistrer    </button>
+                                          </div>
+                                        </p-dialog>
+                                        <div *ngIf="modificationApplied" class="alert alert-success mt-3" role="alert">
+                                          Modification appliquée avec succès !
+                                      </div>
+  
+                                        <!-- Image à droite du titre "Confirmer votre demande" -->
+                                        <img src="assets/assets/images/verified.png" alt="Verified" class="form-image">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </div>
+  

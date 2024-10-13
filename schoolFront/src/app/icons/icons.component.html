@@ -1,0 +1,188 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <!-- Formulaire -->
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Enregistrement d'un Nouveau Restaurant</h4>
+                        <p class="card-category">Veuillez saisir les informations nécessaires</p>
+                    </div>
+                    <div class="card-body">
+                        <form #ajoutRestaurationForm="ngForm" (ngSubmit)="addRestauration(); ajoutRestaurationForm.resetForm()" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="inputName" class="text-success"><strong>Code</strong></label>
+                                    <input type="text" [(ngModel)]="Restauration.code" class="form-control" id="inputName" name="code" placeholder="Code" required pattern="^[0-9]+$">
+                                    <div *ngIf="ajoutRestaurationForm.controls['code'].invalid && (ajoutRestaurationForm.controls['code'].dirty || ajoutRestaurationForm.controls['code'].touched)">
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['code'].errors.required">Code est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['code'].errors.pattern">Code doit être un chiffre.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputCountry" class="text-success"><strong>Libellé</strong></label>
+                                    <input type="text" [(ngModel)]="Restauration.libelle" class="form-control" id="inputCountry" name="libelle" placeholder="Libellé" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutRestaurationForm.controls['libelle'].invalid && (ajoutRestaurationForm.controls['libelle'].dirty || ajoutRestaurationForm.controls['libelle'].touched)">
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['libelle'].errors.required">Libellé est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['libelle'].errors.pattern">Libellé doit être des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputCity" class="text-success"><strong>Adresse</strong></label>
+                                    <input type="text" [(ngModel)]="Restauration.adresse" class="form-control" id="inputCity" name="adresse" placeholder="Adresse" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutRestaurationForm.controls['adresse'].invalid && (ajoutRestaurationForm.controls['adresse'].dirty || ajoutRestaurationForm.controls['adresse'].touched)">
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['adresse'].errors.required">Adresse est requise.</div>
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['adresse'].errors.pattern">Adresse doit être des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2 position-relative">
+                                    <label for="inputCRE" class="text-success"><strong>CRE</strong></label>
+                                    <div class="input-group">
+                                        <select [(ngModel)]="Restauration.cre" class="form-control" id="inputCRE" name="cre" required>
+                                            <option value="">Sélectionnez un CRE</option>
+                                            <option *ngFor="let cre of cres" [value]="cre.nom">{{ cre.nom }}</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="material-icons">arrow_drop_down</i></span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="ajoutRestaurationForm.controls['cre'].invalid && (ajoutRestaurationForm.controls['cre'].dirty || ajoutRestaurationForm.controls['cre'].touched)">
+                                        <div class="text-danger">CRE est requis.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputCity" class="text-success"><strong>Capacité</strong></label>
+                                    <input type="number" [(ngModel)]="Restauration.capacite" class="form-control" id="inputCity" name="capacite" placeholder="Capacité" required min="0" step="1" pattern="^[0-9]+$">
+                                    <div *ngIf="ajoutRestaurationForm.controls['capacite'].invalid && (ajoutRestaurationForm.controls['capacite'].dirty || ajoutRestaurationForm.controls['capacite'].touched)">
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['capacite'].errors.required">Capacité est requise.</div>
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['capacite'].errors.pattern">Capacité doit être un chiffre.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputSalary" class="text-success"><strong>Coût</strong></label>
+                                    <input type="number" [(ngModel)]="Restauration.cout" class="form-control" id="inputSalary" name="cout" placeholder="Coût" required min="0" step="0.01" pattern="^[0-9]+(\.[0-9]{1,2})?$">
+                                    <div *ngIf="ajoutRestaurationForm.controls['cout'].invalid && (ajoutRestaurationForm.controls['cout'].dirty || ajoutRestaurationForm.controls['cout'].touched)">
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['cout'].errors.required">Coût est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutRestaurationForm.controls['cout'].errors.pattern">Coût doit être un chiffre.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2 position-relative">
+                                    <label for="inputResponsible" class="text-success"><strong>Responsable</strong></label>
+                                    <div class="input-group">
+                                        <select [(ngModel)]="Restauration.responsable" class="form-control" id="inputResponsible" name="responsable" required>
+                                            <option value="">Sélectionnez un responsable</option>
+                                            <option *ngFor="let emp of emps" [value]="emp.nom + ' ' + emp.prenom">{{ emp.nom }} {{ emp.prenom }}</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="material-icons">arrow_drop_down</i></span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="ajoutRestaurationForm.controls['responsable'].invalid && (ajoutRestaurationForm.controls['responsable'].dirty || ajoutRestaurationForm.controls['responsable'].touched)">
+                                        <div class="text-danger">Responsable est requis.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-12 text-center mt-4">
+                                    <button type="submit" [disabled]="!ajoutRestaurationForm.valid" class="btn btn-success">
+                                        Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+               
+
+<!-- Tableau des employés -->
+<div class="card">
+    <div class="card-header card-header-warning  d-flex justify-content-between align-items-center">
+        <div>
+        <h4 class="card-title mb-0">Liste des restaurations</h4>
+        <p class="card-category">Liste complète des restaurations disponibles</p>
+        </div>
+        <!-- Search form -->
+        <div class="md-form active-cyan active-cyan-2 mb-0">
+            <input class="form-control search-input" type="text" [(ngModel)]="term" placeholder="Rechercher" aria-label="Rechercher">
+        </div>
+        
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="text-primary">
+                    
+                    <th class="text-center text-warning ">  <strong>Code</strong></th>
+                    <th class="text-center text-warning "> <strong>Libellé</strong></th>
+                    <th class="text-center text-warning ">   <strong>Adresse</strong></th>
+                    <th class="text-center text-warning ">  <strong>CRE</strong></th>
+                    <th class="text-center text-warning ">  <strong>Capacité</strong></th>
+                    <th class="text-center text-warning ">  <strong>coût</strong></th>
+                    <th class="text-center text-warning ">  <strong>Responsable</strong></th>
+                    <th class="text-center text-warning"> <strong>Actions</strong></th> <!-- Ajout de la colonne Actions -->
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of restaurations | filetrage:term; let i = index ">
+                        <ng-container *ngIf="!e.isEdit; else editRow">
+                           
+                            <td class="text-center">{{ e.code }}</td>
+                            <td class="text-center">{{ e.libelle }}</td>
+                            <td class="text-center">{{ e.adresse }}</td>
+                            <td class="text-center">{{ e.cre }}</td>
+                            <td class="text-center">{{ e.capacite }}</td>
+                            <td class="text-center">{{ e.cout }}</td>
+                            <td class="text-center">{{ e.responsable }}</td>
+                            <td class="td-actions text-center">
+                                <button mat-raised-button type="button" matTooltip="Modifier" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEdit(e)">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Supprimer" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="confirmDelete(e.id)">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </td>
+                        </ng-container>
+                        <ng-template #editRow>
+                            
+                            <td><input type="text" class="form-control" [(ngModel)]="e.code"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.libelle"></td>
+                            <td><input type="text" class="form-control" [(ngModel)]="e.adresse"></td>
+
+                            <td>  <select [(ngModel)]="e.cre" class="form-control" id="inputCRE" name="cre" required>
+                                <option value="">Sélectionnez un CRE</option>
+                                <option *ngFor="let cre of cres" [value]="cre.nom">{{ cre.nom }}</option>
+                            </select>   </td>
+
+
+                            <td><input type="text" class="form-control" [(ngModel)]="e.capacite"></td>
+                            
+                            <td><input type="text" class="form-control" [(ngModel)]="e.cout"></td>
+                            <td>
+                                <select [(ngModel)]="e.responsable" class="form-control" (focus)="loadResponsables()">
+                                    <option value="">Sélectionnez un responsable</option>
+                                    <option *ngFor="let employee of employees" [value]="employee.nom + ' ' + employee.prenom">{{ employee.nom }} {{ employee.prenom }}</option>
+                                </select>
+                                <div *ngIf="!e.responsable" class="text-danger">Responsable est requis.</div>
+                            </td>
+                            <td class="td-actions text-center">
+                                <!-- Boutons pour enregistrer ou annuler -->
+                                <button mat-raised-button type="button" matTooltip="Enregistrer" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onUpdate(e)">
+                                    <i class="material-icons">save</i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Annuler" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon" (click)="onCancel(e)">
+                                    <i class="material-icons">cancel</i>
+                                </button>
+                            </td>
+                        </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>

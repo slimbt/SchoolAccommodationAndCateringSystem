@@ -1,0 +1,87 @@
+<h3 class="table-title">historique d'hébergement</h3>
+
+<div class="container mt-5">
+  <table class="table align-middle mb-0 bg-white table-content">
+    <thead class="bg-light">
+      <tr>
+        <th>Nom & Prénom</th>
+        <th>Elève</th>
+        <th>Type</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Statut</th>
+        <th>Envoyée le</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Vérifiez si le tableau des demandes est vide -->
+      <tr *ngIf="demandes.length === 0">
+        <td colspan="7" class="text-center">Pas encore de demandes</td>
+      </tr>
+      <!-- Affichez les demandes s'il y en a -->
+      <tr *ngFor="let demande of demandes">
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- Vérifiez si photoPath est défini -->
+        
+            <div>
+              <h5 class="card-title mb-0"> <strong>  {{ demande.nom }} {{ demande.prenom }} </strong></h5>  
+            </div>
+          </div>
+        </td>
+        <td>{{ demande.selectedEleve }}</td>
+        <td>{{ demande.typeChambre }}</td>
+        <td>{{ demande.datedebut }}</td>
+        <td>{{ demande.datefin }}</td>
+        <td>
+          <span class="badge" [ngClass]="getBadgeClass(demande.status)">{{ demande.status || 'En attente' }}</span>
+        </td>
+        <td>{{ demande.createdAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<h3 class="table-title-restauration">historique de restauration</h3>
+<div class="container mt-5">
+  <table class="table align-middle mb-0 bg-white table-content-restauration">
+    <thead class="bg-light">
+      <tr>
+        <th>Nom & Prénom</th>
+        <th>Elève</th>
+        <th>Type</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Statut</th>
+        <th>Envoyée le</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Vérifiez si le tableau des demandes de restauration est vide -->
+      <tr *ngIf="demandesR.length === 0">
+        <td colspan="7" class="text-center">Pas encore de demandes</td>
+      </tr>
+      <!-- Affichez les demandes de restauration s'il y en a -->
+      <tr *ngFor="let demanda of demandesR">
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- Vérifiez si photoPath est défini -->
+         
+            <div>
+              <h5 class="card-title mb-0"> <strong> {{ demanda.nom }} {{ demanda.prenom }}  </strong></h5>  
+            </div>
+          </div>
+        </td>
+        <td>{{ demanda.selectedEleve }}</td>
+        <td>{{ demanda.type }}</td>
+        <td>{{ demanda.datedebut }}</td>
+        <td>{{ demanda.datefin }}</td>
+        <td>
+          <span class="badge" [ngClass]="getBadgeClass(demanda.status)">{{ demanda.status || 'En attente' }}</span>
+        </td>
+        <td>{{ demanda.createdAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

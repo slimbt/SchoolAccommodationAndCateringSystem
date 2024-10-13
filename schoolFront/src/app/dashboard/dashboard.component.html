@@ -1,0 +1,127 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">home</i>
+                        </div>
+                        <p class="card-category">Nombre de demandes d'hébergements</p>
+                        <h3 class="card-title">{{this.NumberOfHebergement}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">restaurant</i>
+                        </div>
+                        <p class="card-category">Nombre de demandes de restaurations</p>
+                        <h3 class="card-title">{{this.NumberOfRestauration}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">person</i>
+                        </div>
+                        <p class="card-category">Nombre de parents</p>
+                        <h3 class="card-title">{{this.numberOfParents}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">child_care</i>
+                        </div>
+                        <p class="card-category">Nombre d'enfants</p>
+                        <h3 class="card-title">{{ this.NumberOfEleve }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <p class="card-category">Nombre d'employés</p>
+                        <h3 class="card-title">{{  this.longeuremp}}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-secondary card-header-icon">
+                        <div class="card-icon card-icon-navy">
+                            <i class="material-icons">business</i>
+                        </div>
+                        <p class="card-category">Nombre des hébergements crées</p>
+                        <h3 class="card-title">{{this.numberOfHebergAdmin}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-light card-header-icon">
+                        <div class="card-icon card-icon-bordeaux">
+                            <i class="material-icons">restaurant_menu</i>
+                        </div>
+                        <p class="card-category">Nombre des restaurations crées</p>
+                        <h3 class="card-title">{{this.numberOfResAdmin}}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats same-height">
+                    <div class="card-header card-header-dark card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">feedback</i>
+                        </div>
+                        <p class="card-category">Nombre de feedback</p>
+                        <h3 class="card-title">{{ this.NumberOfFeedback }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- The rest of your code remains unchanged -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto"> <!-- Utilisation de mx-auto pour centrer horizontalement -->
+      <div class="card">
+        <div class="card-header">
+          Hébergements statistiques
+        </div>
+        <div class="card-body">
+          <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Deuxième graphique (Restaurations statistiques) -->
+  <div class="row">
+    <div class="col-lg-8 mx-auto"> <!-- Utilisation de mx-auto pour centrer horizontalement -->
+      <div class="card">
+        <div class="card-header">
+          Restaurations statistiques
+        </div>
+        <div class="card-body">
+          <p-chart type="bar" [data]="basicData2" [options]="basicOptions"></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

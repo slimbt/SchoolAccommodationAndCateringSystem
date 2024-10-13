@@ -1,0 +1,42 @@
+.same-height {
+    height: 200px; /* Ajustez cette valeur selon vos besoins */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.same-height .card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.same-height .card-icon {
+    font-size: 48px; /* Ajustez cette valeur selon vos besoins */
+}
+
+.same-height .card-category {
+    font-size: 16px; /* Ajustez cette valeur selon vos besoins */
+    font-weight: bold;
+    text-align: center;
+}
+
+.same-height .card-title {
+    font-size: 24px; /* Ajustez cette valeur selon vos besoins */
+    font-weight: bold;
+    text-align: center;
+    margin: auto; /* Centre le nombre verticalement */
+}
+
+/* Couleurs spécifiques pour les icônes */
+.card-icon-navy {
+    background-color: #000080 !important; /* Bleu marine */
+    color: white !important; /* Blanc pour l'icône */
+}
+
+.card-icon-bordeaux {
+    background-color: #800020 !important; /* Bordeaux */
+    color: white !important; /* Blanc pour l'icône */
+}

@@ -1,0 +1,106 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">Ajouter un Administrateur</h4>
+                      <p class="card-category">Création :</p>
+                  </div>
+                  <div class="card-body">
+                      <form (ngSubmit)="onSubmit()" #adminForm="ngForm">
+                          <div class="row">
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nom d'utilisateur" [(ngModel)]="form.username" name="username" required pattern="[a-zA-Z]+" minlength="3">
+                                      <mat-error *ngIf="adminForm.controls['username'].hasError('required')">Nom d'utilisateur est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['username'].hasError('pattern')">Nom d'utilisateur doit contenir des caractères alphabétiques uniquement.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['username'].hasError('minlength')">Nom d'utilisateur doit contenir au moins 3 caractères.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-5 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email" type="email" [(ngModel)]="form.email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                      <mat-error *ngIf="adminForm.controls['email'].hasError('required')">Email est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['email'].hasError('pattern')">Email invalide.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Mot de passe" type="password" [(ngModel)]="form.password" name="password" required minlength="8" maxlength="20">
+                                      <mat-error *ngIf="adminForm.controls['password'].hasError('required')">Mot de passe est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['password'].hasError('minlength')">Le mot de passe doit contenir au moins 8 caractères.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['password'].hasError('maxlength')">Le mot de passe ne peut pas dépasser 20 caractères.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nom" [(ngModel)]="form.nom" name="nom" required pattern="[a-zA-Z]+" minlength="2">
+                                      <mat-error *ngIf="adminForm.controls['nom'].hasError('required')">Nom est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['nom'].hasError('pattern')">Nom doit contenir des caractères alphabétiques uniquement.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['nom'].hasError('minlength')">Nom doit contenir au moins 2 caractères.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Prénom" [(ngModel)]="form.prenom" name="prenom" required pattern="[a-zA-Z]+" minlength="2">
+                                      <mat-error *ngIf="adminForm.controls['prenom'].hasError('required')">Prénom est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['prenom'].hasError('pattern')">Prénom doit contenir des caractères alphabétiques uniquement.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['prenom'].hasError('minlength')">Prénom doit contenir au moins 2 caractères.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="CIN" [(ngModel)]="form.cin" name="cin" required pattern="[0-9]{8}" minlength="8" maxlength="8">
+                                      <mat-error *ngIf="adminForm.controls['cin'].hasError('required')">CIN est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['cin'].hasError('pattern')">CIN doit contenir exactement 8 chiffres.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Poste" [(ngModel)]="form.poste" name="poste" required pattern="[a-zA-Z]+" minlength="2">
+                                      <mat-error *ngIf="adminForm.controls['poste'].hasError('required')">Poste est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['poste'].hasError('pattern')">Poste doit contenir des caractères alphabétiques uniquement.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['poste'].hasError('minlength')">Poste doit contenir au moins 2 caractères.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-4 mb-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Téléphone" [(ngModel)]="form.telephone" name="telephone" required pattern="[0-9]{8}" minlength="8" maxlength="8">
+                                      <mat-error *ngIf="adminForm.controls['telephone'].hasError('required')">Téléphone est requis.</mat-error>
+                                      <mat-error *ngIf="adminForm.controls['telephone'].hasError('pattern')">Téléphone doit contenir exactement 8 chiffres.</mat-error>
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                          <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="!adminForm.form.valid">Valider</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      <div class="col-md-4">
+        <!-- Afficher chaque administrateur dans une carte -->
+        <h2 class="text-center text-danger ">  <strong>  Liste des admins  </strong>  </h2>
+        <br>
+        <div class="card card-profile" *ngFor="let admin of admins">
+          <div class="card-avatar">
+            <a href="javascript:void(0)">
+              <img class="img" src="/assets/img/i.jpg" />
+            </a>
+          </div>
+          <div class="card-body">
+            <p class="card-header-info"> <strong>  Nom d'utilisateur : {{ admin.username }}</strong></p>
+            <p class="card-header-info"> <strong>  Email : {{ admin.email }}  </strong></p>
+            <p class="card-header-info"> <strong>  Nom : {{ admin.nom }}  </strong></p>
+            <p class="card-header-info"> <strong>  Prénom : {{ admin.prenom }}  </strong></p>
+            <p class="card-header-info"> <strong>  CIN : {{ admin.cin }}  </strong></p>
+            <p class="card-header-info"> <strong>  Poste : {{ admin.poste }}  </strong></p>
+            <p class="card-header-info"> <strong>  Téléphone : {{ admin.telephone }}  </strong></p>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

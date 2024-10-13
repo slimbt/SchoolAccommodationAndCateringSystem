@@ -1,0 +1,22 @@
+import { Component, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-chart1',
+  templateUrl: './chart1.component.html',
+  styleUrls: ['./chart1.component.css']
+})
+export class Chart1Component implements OnInit {
+
+  @Input() data: any;
+  options: any;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.options = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
+  }
+
+}

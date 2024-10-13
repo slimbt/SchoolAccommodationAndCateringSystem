@@ -1,0 +1,555 @@
+
+
+
+
+<section style="background-color: #eee; margin-top: 100px; margin-bottom: 50px;">
+    <div class="container py-5 border border-dark rounded"> <!-- Ajout des classes border et rounded -->
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">Bienvenue cher parent dans votre espace !</h2>
+                    <div class="d-flex">
+                        <button class="btn btn-primary btn-rounded "[routerLink]="['/formulaire-h']">Demander hébergement</button>
+                        <button class="btn btn-info btn-rounded" [routerLink]="['/formulaire-r']">Demander restauration</button>
+                        <button class="btn btn-light btn-rounded" [routerLink]="['/reclamation']">Envoyer réclamation</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+      
+      
+        
+        
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <ng-container *ngIf="parentInfo">
+                <!-- Vérifie si photoPath est défini -->
+                <img *ngIf="parentInfo.photoPath" src="assets/assets/images/{{ parentInfo.photoPath }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <!-- Si photoPath est null, utilise un chemin par défaut -->
+                <img *ngIf="!parentInfo.photoPath" src="assets/assets/images/pdp.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <h3 class="my-3">
+                  <span class="bold-text" style="margin-right: 10px;">{{ parentInfo.prenom }}</span>
+                  <span class="bold-text">{{ parentInfo.nom }}</span>
+                </h3>
+              </ng-container>
+
+                
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+              <p><strong>CIN :</strong></p> <p class="text-muted mb-4">  {{parentInfo?.cin}} </p>
+              <p><strong>Profession :</strong></p> <p class="text-muted mb-1">   {{parentInfo?.profession}}</p>
+              <p><strong>Adresse :</strong></p> <p class="text-muted mb-1">   {{parentInfo?.adresse}}</p>
+              <p><strong>Téléphone :</strong></p><p class="text-muted mb-1">   {{parentInfo?.telephone}}</p>
+                  </div>
+                </div>
+              </div>
+            <!-- Edit button triggering modal -->
+<div class="d-flex justify-content-center mb-2">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Editer</button>
+</div>
+            </div>
+          </div>
+
+
+     
+
+<!-- Modal for editing parent information -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modifier vos informations</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form #editParentForm="ngForm" (ngSubmit)="saveChanges()">
+                  <div class="form-group">
+                      <label>Nom:</label>
+                      <input type="text" [(ngModel)]="parentInfo.nom" class="form-control" name="nom" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Prénom:</label>
+                      <input type="text" [(ngModel)]="parentInfo.prenom" class="form-control" name="prenom" required>
+                  </div>
+                  <div class="form-group">
+                      <label>CIN:</label>
+                      <input type="text" [(ngModel)]="parentInfo.cin" class="form-control" name="cin" required>
+                  </div>
+                  <div class="form-group">
+                      <label>Profession:</label>
+                      <input type="text" [(ngModel)]="parentInfo.profession" class="form-control" name="profession">
+                  </div>
+                  <div class="form-group">
+                      <label>Adresse:</label>
+                      <input type="text" [(ngModel)]="parentInfo.adresse" class="form-control" name="adresse">
+                  </div>
+                  <div class="form-group">
+                      <label>Téléphone:</label>
+                      <input type="text" [(ngModel)]="parentInfo.telephone" class="form-control" name="telephone">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                      <button *ngIf="!modificationApplied"  type="submit" class="btn btn-primary">Enregistrer Modification</button>
+                  </div>
+              </form>
+              <div *ngIf="modificationApplied" class="alert alert-success mt-3" role="alert">
+                Modification appliquée avec succès !
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Existing content -->
+
+
+<!-- Modal for Hebergement information -->
+<div class="modal fade" id="exampleModalH" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <p>Pour soumettre une demande d'hébergement, veuillez remplir soigneusement le formulaire dédié à cet effet. Assurez-vous de fournir toutes les informations requises avec précision et exactitude. Une fois que vous avez confirmé vos données, vous pouvez soumettre votre demande en appuyant sur le bouton approprié. Après l'envoi de votre demande, nous vous prions de patienter pendant que notre équipe examine votre demande. Nous vous tiendrons informé(e) de l'avancement de votre demande par le biais de notifications. Merci pour votre confiance et votre compréhension.</p>
+    </div>
+      <div class="container padding-bottom-3x mb-1">
+        <div class="card mb-3">
+          <div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Cycle de vie de votre demande d'hébergement </span> </div>
+          <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Lorsque votre demande est traitée vous seriez informé par une notification</span> </div>
+      
+          </div>
+          <div class="card-body">
+            <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/env.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande envoyée</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/atten.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">En attente de traitement</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/encour.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande en cours d'examen</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/dem.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande acceptée</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/pai.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Possibilité de paiement</h4>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for restauration information -->
+<div class="modal fade" id="exampleModalR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <p>Pour soumettre une demande de restauration, veuillez remplir soigneusement le formulaire dédié à cet effet. Assurez-vous de fournir toutes les informations requises avec précision et exactitude. Une fois que vous avez confirmé vos données, vous pouvez soumettre votre demande en appuyant sur le bouton approprié. Après l'envoi de votre demande, nous vous prions de patienter pendant que notre équipe examine votre demande. Nous vous tiendrons informé(e) de l'avancement de votre demande par le biais de notifications. Merci pour votre confiance et votre compréhension.</p>
+    </div>
+      <div class="container padding-bottom-3x mb-1">
+        <div class="card mb-3">
+          <div class="p-4 text-center text-white text-lg bg-dark rounded-top"><span class="text-uppercase">Cycle de vie de votre demande du restauration </span> </div>
+          <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between py-3 px-2 bg-secondary">
+            <div class="w-100 text-center py-1 px-2"><span class="text-medium">Lorsque votre demande est traitée vous seriez informé par une notification</span> </div>
+      
+          </div>
+          <div class="card-body">
+            <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/env.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande envoyée</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/atten.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">En attente de traitement</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/encour.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande en cours d'examen</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/dem.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Demande acceptée</h4>
+              </div>
+              <div class="step">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><img src="assets/assets/images/pai.png" style="width: 50px; height: 50px;"></div>
+                </div>
+                <h4 class="step-title">Possibilité de paiement</h4>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Modal for info paiement -->
+<div class="modal fade" id="exampleModalP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container">
+        <p>Cher Parent,
+
+          Nous vous remercions d'avoir soumis votre demande d'hébergement ou de restauration via notre plateforme en ligne. Nous sommes ravis de vous accueillir dans notre établissement.
+          
+          Nous vous informons que votre demande a été acceptée. Pour finaliser votre inscription et garantir votre place dans notre système d'hébergement ou de restauration, veuillez prendre note des étapes suivantes :
+          
+          Imprimer l'acceptation de votre demande : Nous vous prions d'imprimer l'acceptation de votre demande, qui vous a été envoyée par e-mail ou qui est disponible sur votre compte utilisateur sur notre site web. Cette acceptation est votre preuve officielle de réservation et doit être présentée lors de votre arrivée à l'école.
+          
+          Payer les frais d'hébergement ou de restauration : Vous devez vous rendre à l'école pour régler les frais correspondants à votre demande d'hébergement ou de restauration. Nos bureaux administratifs sont ouverts aux heures de bureau et notre personnel sera disponible pour vous assister dans le processus de paiement.
+          
+          N'hésitez pas à nous contacter si vous avez des questions ou si vous avez besoin d'assistance supplémentaire. Nous sommes là pour vous aider à chaque étape du processus.
+          
+          Nous sommes impatients de vous accueillir et de vous offrir une expérience enrichissante dans notre établissement.</p>
+    </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+<!-- Modal for notiff information -->
+<div class="modal fade" id="exampleModalN" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Messages</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container">
+        <div class="row">
+          <div *ngIf="reps.length === 0" class="col-12">
+            <p>Vous n'avez pas encore des messages</p>
+          </div>
+          <div class="col-12 message-container" *ngFor="let rep of reps">
+            <div class="message-header">
+              <span class="message-objet"> <strong>Objet :</strong>{{ rep.objet }}</span>
+              <span class="message-date">{{ rep.date | date:'short' }}</span>
+            </div>
+            <div class="message-body">
+              <strong>Réponse :</strong>
+              <p>{{ rep.message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal for suivi demandes -->
+<div class="modal fade" id="exampleModalS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Suivi des demandes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-scroll">
+        <app-mesdemandes></app-mesdemandes>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal for historique -->
+<div class="modal fade" id="exampleModalHIS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Historique des demandes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-scroll">
+      <app-historique></app-historique>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for info administartif -->
+<div class="modal fade" id="exampleModalIA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Infotmations administratifs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-scroll">
+      <p>Bienvenue sur notre site web d'hébergement et de restauration scolaire, dédié à fournir un environnement sécurisé et nourrissant pour les élèves. Notre établissement s'engage à offrir des services d'hébergement et de restauration de qualité, soutenus par une équipe dévouée et expérimentée.
+
+        En tant que parents et tuteurs, vous trouverez sur notre site toutes les informations administratives dont vous avez besoin pour faciliter le séjour de votre enfant au sein de notre institution. Notre équipe administrative est disponible pour répondre à vos questions, traiter vos demandes et fournir un soutien continu tout au long de l'année scolaire.
+        
+        Nous mettons à votre disposition des informations essentielles telles que les procédures d'inscription, les tarifs et les modalités de paiement, ainsi que les règlements internes concernant l'hébergement et la restauration. Vous trouverez également des détails sur notre équipe de direction, nos partenaires institutionnels et nos engagements en matière de sécurité et de bien-être des élèves.
+        
+        Naviguez à travers notre site pour découvrir nos installations modernes, nos menus équilibrés et nos programmes d'activités extrascolaires. Nous croyons fermement en une approche holistique de l'éducation, qui englobe non seulement l'enseignement académique, mais aussi le soutien social, émotionnel et physique de chaque élève.
+        
+        Nous sommes fiers de créer un environnement où les élèves se sentent chez eux loin de chez eux, où leur santé et leur bonheur sont prioritaires. Nous nous engageons à maintenir des normes élevées de qualité et d'excellence dans tous les aspects de nos services.
+        
+        N'hésitez pas à nous contacter si vous avez des questions ou des préoccupations. Nous sommes là pour vous aider à chaque étape de votre voyage avec nous.
+        
+        J'espère que cela correspond à ce que vous recherchiez ! Si vous avez besoin de plus d'informations ou d'ajustements, n'hésitez pas à demander.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for  calendrier -->
+<div class="modal fade" id="exampleModalCAL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Calendrier</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-scroll">
+        <div class="calendar">
+          <div *ngFor="let evenement of evenements" class="event">
+            <div class="date">{{ evenement.date }}</div>
+            <div class="details">
+              <div class="title">{{ evenement.titre }}</div>
+              <div class="description">{{ evenement.description }}</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          
+<div class="card mb-4 mb-lg-0">
+  <div class="card-body p-0">
+    <ul class="list-group list-group-flush rounded-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <i class="fas fa-globe fa-lg text-warning"></i>
+        <button type="button" class="btn btn-secondary position-relative" data-toggle="modal" data-target="#exampleModalN">
+          <i class="fas fa-envelope fa-lg mr-2"></i>
+          Messages
+          <span class="badge badge-danger position-absolute top-0 start-100 translate-middle" style="font-size: 1em; background-color: red; color: white; padding: 0.5em 0.75em; border-radius: 50%;">{{ reps.length }}</span>
+        </button>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalH">Informations d'hébergement</button>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalR">Informations de restauration</button>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalP">Paiement et Facturation</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+    
+
+    
+    
+
+
+
+
+
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="text-center mb-4">
+                <div>
+                  <button type="button" class="btn btn-outline-secondary me-5" [routerLink]="['/add-e']">Ajouter enfant</button>
+                  <button type="button" class="btn btn-outline-secondary ms-5" [routerLink]="['/list-e']">Liste enfants</button>
+                </div>
+              </div>
+        
+              <div class="row align-items-center">
+                <div class="col-sm-3">
+                  <p class="mb-0">
+                    <img src="assets/assets/images/inscrip.png" class="img-fluid" style="max-width: 50px;">
+                  </p>
+                </div>
+                <div class="col-sm-8 d-flex align-items-center">
+                  <p class="text-muted mb-0 mr-2">Mes Demandes</p>
+                  <li class="nav-item dropdown list-unstyled mb-0 position-relative">
+                    <button type="button" pButton icon="pi pi-bell" label="" class="p-button-text" (click)="op.toggle($event)" >
+                      <span class="p-badge p-badge-danger" style="margin-top: -20px;">{{ notifs.length }}</span>
+                    </button>
+                    <p-overlayPanel #op [dismissable]="true">
+                      <div *ngFor="let notif of notifs">
+                        <a class="dropdown-item" href="javascript:void(0)">{{ notif.message }}</a>
+                      </div>
+                    </p-overlayPanel>
+                  </li>
+                </div>
+                
+                
+                <div class="col-sm-1" style="cursor: pointer;">
+                  <img src="assets/assets/images/loop.png" alt="Open Modal" class="img-fluid" data-toggle="modal" data-target="#exampleModalS" style="max-width: 50px;">
+                </div>
+              </div>
+        
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0"><img src="assets/assets/images/calendrier.png" class="img-fluid" style="max-width: 50px;"></p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">Mon Historique</p>
+                </div>
+                <div class="col-sm-1" style="cursor: pointer;">
+                  <img src="assets/assets/images/loop.png" alt="Open Modal" class="img-fluid" data-toggle="modal" data-target="#exampleModalHIS" style="max-width: 50px;">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0"><img src="assets/assets/images/inf.png" class="img-fluid" style="max-width: 50px;"></p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">Informations Administratifs</p>
+                </div>
+                <div class="col-sm-1">
+                  <img src="assets/assets/images/loop.png" alt="Open Modal" class="img-fluid" data-toggle="modal" data-target="#exampleModalIA" style="max-width: 50px;">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0"><img src="assets/assets/images/temps.png" class="img-fluid" style="max-width: 50px;"></p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">Calendrier Scolaire</p>
+                </div>
+                <div class="col-sm-1">
+                  <img src="assets/assets/images/loop.png" alt="Open Modal" class="img-fluid" data-toggle="modal" data-target="#exampleModalCAL" style="max-width: 50px;">
+                </div>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+        
+    
+        
+              <!-- Section des boutons -->
+            
+            </div>
+          </div>
+
+     
+     
+      
+   
+  
+          <div class="row">
+            <div class="col-lg-4 offset-lg-5"> 
+                <div id="carouselExampleCaptions" class="carousel slide carousel-custom" data-bs-ride="carousel" style="margin-top: -35rem;">
+                    <div class="carousel-indicators">
+                        <button *ngFor="let image of images; let i = index" type="button" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i" [class.active]="i === 0" aria-current="true" aria-label="Slide {{ i + 1 }}"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === 0">
+                            <img [src]="image.itemImageSrc" class="d-block w-100 mx-auto" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="image-overlay"></div>
+                                <h5 style="color: rgb(0, 213, 255);"><strong>{{ image.title }}</strong></h5>
+                                <button (click)="showDescription = !showDescription" class="btn btn-light">Savoir plus</button>
+                                <p *ngIf="showDescription">{{ image.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+       
+</section>

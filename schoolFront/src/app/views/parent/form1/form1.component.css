@@ -1,0 +1,142 @@
+/* Styles pour les éléments du formulaire */
+.form-card {
+    max-width: 100%;
+    backdrop-filter: blur(30px);
+  }
+  
+  .form-card .card-body {
+    padding: 30px;
+  }
+  
+  .form-card h2 {
+    color: black;
+  }
+  
+  /* Styles pour les champs de formulaire avec label */
+  .form-outline {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .form-outline input.form-control {
+    font-size: 16px;
+    padding: 14px 12px;
+    border: 1px solid #ced4da;
+  }
+  
+  /* Positionnement initial des labels */
+  .form-outline label {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+    font-size: 16px;
+    color: #6c757d;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+  }
+  
+  /* Styles pour les labels lorsqu'ils sont en haut */
+  .form-outline input.form-control:focus ~ label,
+  .form-outline input.form-control:not(:placeholder-shown) ~ label {
+    top: -20px;
+    left: 12px;
+    font-size: 12px;
+    color: #007bff;
+  }
+  
+  /* Personnalisation du bouton */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  /* Personnalisation de la liste déroulante */
+.form-select {
+  font-size: 16px;
+  padding: 14px 12px;
+  border: 1px solid #ced4da;
+  color: #6c757d;
+}
+
+/* Style des options de la liste déroulante */
+.form-select option {
+  font-size: 16px;
+  padding: 10px;
+}
+/* Cacher le libellé lorsque la liste déroulante a le focus */
+.form-outline.select-focused label {
+  display: none;
+}
+
+/* Cacher le libellé lorsque la première option est sélectionnée */
+.form-outline.select-filled label {
+  display: none;
+}
+
+
+
+
+/* Masquer les boutons radio par défaut */
+/* Masquer les boutons radio par défaut */
+[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  margin-left: -9999px;
+}
+
+/* Style des boutons radio personnalisés */
+.radio-custom {
+  display: flex; /* Utiliser flexbox pour aligner horizontalement */
+  align-items: center; /* Centrer les éléments verticalement */
+  cursor: pointer;
+  margin-right: 20px; /* Espacement entre les boutons radio */
+}
+
+/* Style du cercle de sélection */
+.radio-custom input[type="radio"] + label:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #007bff; /* Couleur de la bordure du cercle */
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style du cercle de sélection lorsque le bouton radio est coché */
+.radio-custom input[type="radio"]:checked + label:before {
+  background-color: #007bff; /* Couleur de remplissage du cercle */
+}
+
+/* Style du texte du label */
+.radio-custom label {
+  vertical-align: middle;
+}
+
+/* Assurer que les labels des boutons radio sont visibles */
+.radio-custom input[type="radio"] + label {
+  display: inline-block;
+}
+
+/* Alignement de l'étiquette "Type" à gauche */
+.form-label {
+  margin-right: 10px; /* Espacement à droite de l'étiquette */
+}
+
+/* Espacement entre les boutons radio */
+.radio-custom:not(:last-child) {
+  margin-right: 10px;
+}
+
+
+.form-control-dark {
+  background-color: #e3eeed; /* Couleur de fond foncée */
+  color: #000000; /* Couleur du texte clair */
+  border-color: #333; /* Couleur de la bordure foncée */
+}

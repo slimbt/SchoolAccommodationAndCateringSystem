@@ -1,0 +1,292 @@
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { CreService } from 'app/_services/cre.service';
+import { EleveService } from 'app/_services/eleve.service';
+import { EmployeeService } from 'app/_services/employee.service';
+import { NotificationService } from 'app/_services/notification.service';
+import { ParentService } from 'app/_services/parent.service';
+import { RestaurationParentService } from 'app/_services/restauration-parent.service';
+import { WebsocketService } from 'app/_services/web-socket.service';
+
+@Component({
+  selector: 'app-table-pagination-restau',
+  templateUrl: './table-pagination-restau.component.html',
+  styleUrls: ['./table-pagination-restau.component.css']
+})
+export class TablePaginationRestauComponent implements OnInit, AfterViewInit {
+  columnNames = {
+    nom: 'Nom',
+    prenom: 'Prénom',
+    datedebut: 'Date de début',
+    datefin: 'Date de fin',
+    libelle: 'Libellé',
+    cre: 'Cre',
+    selectedEleve: 'Élève sélectionné',
+    type: 'Type ',
+    message: 'Message',
+    status: 'Statut',
+    actions: 'Actions'
+  };
+  term: any;
+  displayedColumns: string[] = ['nom', 'prenom', 'datedebut', 'datefin', 'libelle', 'cre', 'selectedEleve', 'type', 'message', 'status', 'actions'];
+  dataSource = new MatTableDataSource<any>();
+  restaurations: any[] = [];
+  selectedEleve: any = {};
+  selectedParent:any ={};
+  Hebergement: any;
+  filteredHebergements: any[] = [];
+  isTreated = false;
+  elevess: any = [];
+  idParent:any;
+  parentss:any =[];
+  selectedElement: any;
+  infoPP:any={};
+  infoEE:any={};
+  employeeInfo: any = {};
+  creMapping: { [key: number]: string } = {}; // Pour stocker la correspondance entre les ID et les noms des CRE
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  noCreMessage: string = "Vous n'êtes pas encore affecté par un CRE.";
+  constructor(private yService: RestaurationParentService, private eService: EleveService, private pService: ParentService, private uService:EmployeeService,private creService:CreService,private notificationService: NotificationService,
+    private websocketService: WebsocketService) { }
+
+  ngOnInit(): void {{
+    const authUser = sessionStorage.getItem('auth-user');
+    if (authUser) {
+      const user = JSON.parse(authUser);
+      const employeeId = user.id;
+      console.log('employee (user)ID:', employeeId);
+
+      this.uService.getEmployeeById(employeeId).subscribe(
+        (data) => {
+          this.employeeInfo = data;
+          console.log('employe Information:', this.employeeInfo);
+          this.getAllRestauration();
+        },
+        (error) => {
+          console.error('Failed to fetch employee information:', error);
+        }
+      );
+    } else {
+      console.log('No user information found in session storage.');
+    }
+
+    this.getAllParent();
+    this.getAllEleves();
+    this.getCreMapping(); // Appel à la méthode pour obtenir les CRE
+  }}
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getAllRestauration() {
+    this.yService.getAllRestauration().subscribe(
+      (data: any[]) => {
+        this.restaurations = data.map(item => ({
+          ...item,
+          idParent: item.idParent, // Assurez-vous que idParent est attribué correctement
+          isProcessed: localStorage.getItem(`isProcessed_${item.id}`) === 'true' // Récupérer l'état de traitement du stockage local
+        }));
+        console.log("id mta lparent", this.idParent)
+        this.dataSource.data = this.restaurations;
+        this.filterRestaurationsByCre();
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des restaurations :', error);
+      }
+    );
+  }
+  getCreMapping() {
+    this.creService.getAllCre().subscribe(
+      (data: any[]) => {
+        this.creMapping = data.reduce((acc, cur) => {
+          acc[cur.id] = cur.nom;
+          return acc;
+        }, {});
+        this.filterRestaurationsByCre(); // Filtrer après avoir obtenu les CRE
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des CRE :', error);
+      }
+    );
+  }
+
+  filterRestaurationsByCre() {
+    if (this.employeeInfo && this.employeeInfo.id_cre && this.creMapping[this.employeeInfo.id_cre]) {
+      const employeeCreName = this.creMapping[this.employeeInfo.id_cre];
+      this.filteredHebergements = this.restaurations.filter(h => h.cre === employeeCreName);
+      this.dataSource.data = this.filteredHebergements;
+    } else {
+      // Si employeeInfo.id_cre est null, ne pas définir filteredHebergements et afficher le message
+      this.dataSource.data = [];
+      this.noCreMessage = "Vous n'êtes pas encore affecté par un CRE.";
+    }
+  }
+  applyFilter() {
+    if (!this.term || this.term.trim() === '') {
+      this.dataSource.data = this.restaurations;
+      return;
+    }
+
+    const filteredData = this.restaurations.filter(item => {
+      return (
+        (item.nom && item.nom.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.datedebut && item.datedebut.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.datefin && item.datefin.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.libelle && item.libelle.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.cre && item.cre.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.selectedEleve && item.selectedEleve.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.type && item.type.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.status && item.status.toLowerCase().includes(this.term.toLowerCase())) ||
+        (item.prenom && item.prenom.toLowerCase().includes(this.term.toLowerCase()))
+      );
+    });
+
+    this.dataSource.data = filteredData;
+  }
+
+  deleteRestauration(id: any) {
+    this.yService.deleteRestauration(id).subscribe(
+      () => {
+        console.log('restauration supprimé avec succès');
+        this.getAllRestauration();
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de l\'restauration :', error);
+      }
+    );
+  }
+
+  confirmDeleteHebergement(id: any) {
+    if (confirm("Êtes-vous sûr de vouloir refuser cette demande d'restauration ?")) {
+      this.deleteRestauration(id);
+    }
+  }
+
+
+  accepter(element: any) {
+    this.yService.updateStatus(element.id, 'accepté').subscribe(
+      () => {
+        console.log('Statut de l\'restauration mis à jour avec succès');
+        const index = this.restaurations.findIndex(item => item.id === element.id);
+        if (index !== -1) {
+          this.restaurations[index].status = 'accepté';
+          this.restaurations[index].isProcessed = true; // Marquer la demande comme traitée
+          localStorage.setItem(`isProcessed_${element.id}`, 'true'); // Enregistrer dans le stockage local
+          this.dataSource.data = [...this.restaurations];
+          this.filterRestaurationsByCre();
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour du statut de l\'restauration :', error);
+      }
+    );
+  }
+  annuler(element: any) {
+    const index = this.restaurations.findIndex(item => item.id === element.id);
+    if (index !== -1) {
+      this.restaurations[index].isProcessed = false;
+      localStorage.setItem(`isProcessed_${element.id}`, 'false');
+      this.dataSource.data = [...this.restaurations];
+      this.filterRestaurationsByCre();
+    }
+  
+  }
+  refuser(element: any) {
+    this.yService.updateStatus(element.id, 'refusé').subscribe(
+      () => {
+        console.log('Statut de l\'restauration mis à jour avec succès');
+        const index = this.restaurations.findIndex(item => item.id === element.id);
+        if (index !== -1) {
+          this.restaurations[index].status = 'refusé';
+          this.restaurations[index].isProcessed = true; // Marquer la demande comme traitée
+          localStorage.setItem(`isProcessed_${element.id}`, 'true'); // Enregistrer dans le stockage local
+          this.dataSource.data = [...this.restaurations];
+          this.filterRestaurationsByCre();
+          const m= this.showDetails(this.restaurations[index]);
+
+          const nomEleve = this.infoEE.nom ? this.infoEE.nom.toUpperCase() : '';
+                 const prenomEleve = this.infoEE.prenom ? this.infoEE.prenom.toUpperCase() : ''
+                 
+                 let pp = this.infoPP.id; 
+           const message = `Nous somme désolé ! Votre demande de restauration pour votre enfant ${nomEleve} ${prenomEleve} a été refufée`;
+           this.websocketService.sendMessage(message);
+     
+         
+           const notifObj = {
+             message : message ,
+           idParent : pp
+           };
+           console.log("kkkkkkkkkkkkkkk",pp)
+                   this.notificationService.addNotification(notifObj).subscribe(
+                     (response)=>
+                       console.log("ajout reussi du notification dans la table notification ",response)
+                   )
+                   
+                 
+                   }
+           
+                   }
+                     
+                     
+                 ) 
+                   }
+  
+  
+  getAllEleves() {
+    this.eService.getAllEleves().subscribe(
+      (response: any) => {
+        this.elevess = response;
+        console.log("data for get all eleves", response);
+        console.log(this.elevess);
+  
+      }   
+    );
+  }
+  getAllParent() {
+    this.pService.getAllParent().subscribe(
+      (response: any) => {
+        this.parentss = response;
+        console.log("data for get all parents", response);
+        console.log(this.parentss);
+
+  })
+  
+}
+
+showDetails(element: any) {
+  console.log('Élément sélectionné:', element);
+
+  if (element && element.idEleve) {
+   const eleve = this.elevess.find(e => e.id === element.idEleve);
+    if (eleve) {
+      console.log('Détails de l\'Élève:', eleve);
+      this.infoEE=eleve
+      // Afficher les détails de l'élève (par exemple, dans une modal)
+    } else {
+      console.error('Élève introuvable pour l\'ID:', element.idEleve);
+    }
+  } else {
+    console.error('ID Élève non défini dans l\'élément sélectionné:', element);
+  }
+
+  if (element && element.idParent) {
+    const parent = this.parentss.find(p => p.id === element.idParent);
+    if (parent) {
+      console.log('Détails du Parent:', parent);
+      this.infoPP=parent;
+      // Afficher les détails du parent (par exemple, dans une modal)
+    } else {
+      console.error('Parent introuvable pour l\'ID:', element.idParent);
+    }
+  } else {
+    console.error('ID Parent non défini dans l\'élément sélectionné:', element);
+  }
+  
+}
+
+
+
+
+
+}

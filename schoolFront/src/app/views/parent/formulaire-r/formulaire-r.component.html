@@ -1,0 +1,86 @@
+<div id="pricing" class="pricing-tables" >
+    <div class="tables-left-dec">
+      <img src="assets/assets/images/tables-left-dec.png" alt="">
+    </div>
+    <div class="tables-right-dec">
+      <img src="assets/assets/images/tables-right-dec.png" alt="">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading">
+            <h2><em>Pricipes généraux,</em> <span>Horaire de travail, </span> <em> Compostion et Tarif</em> des repas</h2>
+           
+          </div>
+        </div>
+      </div>
+      <section class="jolie-section">
+        
+        <h4>Principes Généraux:</h4>L'alimentation d'un enfant d'âge scolaire est essentielle pour sa croissance, son développement psychomoteur et ses capacités d'apprentissage. Elle doit être équilibrée, variée et répartie au cours de la journée : par exemple 20 % du total énergétique le matin, 40 % au déjeuner de midi, 10 % à quatre heures et 30 % le soir.
+
+        Le temps du repas est l'occasion pour les élèves de se détendre et de communiquer. Il doit aussi être un moment privilégié de découverte et de plaisir.
+      </section>
+    <section class="jolie-section"> <h4> Horaire de travail:</h4>
+<ul>
+       
+       <li><strong> Lundi à vendredi :</strong></li>
+       <li> 9h00 - 11h00 : Service du petit déjeuner </li>
+        <li>12h00 - 14h30 : Service du déjeuner  </li>
+       <li> 17h30 - 19h30 : Service du dîner</li>
+
+
+       <li><strong> Samedi et dimanche :  </strong></li>
+       <li> 10h00 - 12h00 : Service du petit déjeuner </li>
+        <li>14h30 - 17h30 : Service du déjeuner </li>
+       <li> 19h30 - 21h30 : Service du dîner </li>
+    </ul> </section>
+    <section class="jolie-section">  <h4>Composition:</h4>
+    
+        L'alimentation d'un enfant doit lui apporter des aliments de bonne qualité pour répondre à ses besoins de croissance. Elle doit être équilibrée, variée et fractionnée en ration. Il est recommandé aux chefs d'établissement de consulter des professionnels de la diététique ou de la nutrition.
+        Les self-services et la possibilité d'élaborer des menus aménagés doivent permettre de répondre aux besoins des élèves dont l'état de santé nécessite un régime alimentaire particulier. C'est le cas des élèves présentant une allergie ou une maladie chronique.
+        
+        Dans les autres cas, les paniers repas fournis par la famille sont autorisés. Ces dispositions particulières sont développées dans un projet d’accueil individualisé élaboré avec le médecin de l’Éducation nationale rattaché à l’établissement.
+        
+        Les repas servis en restauration collective compteront, d'ici le 1er janvier 2022, 50 % de produits alimentaires durables de qualité dont au moins 20 % de produits issus de l'agriculture biologique.
+    </section>
+    
+    
+      
+      
+      <section class="jolie-section">
+        <h4>Tarif: (Vous pouvez bénéficier du service de restauration dès maintenant en choisissant une offre)</h4>
+       
+        <div class="row">
+          <div class="col-lg-4" *ngFor="let offre of offres">
+            <div class="item">
+              <h4>{{ offre.nom }}</h4>
+              <span>{{ offre.prix }} DT</span>
+              <ul>
+                <li><img [src]="offre.image"></li>
+              </ul>
+          
+              <!-- Bouton pour afficher la description -->
+              <div class="main-blue-button-hover" style="margin-bottom: 20px;">
+                <a (click)="toggleDescription(offre)">Voir menu</a>
+              </div>
+              
+              <!-- Affichage dynamique de la description -->
+              <div *ngIf="offre.showDescription" class="description">
+                <p>{{ offre.menu }}</p>
+              </div>
+          
+              <!-- Utilisation de [routerLink] avec [queryParams] -->
+              <div class="main-red-button-hover">
+                <a [routerLink]="['/form2']" [queryParams]="{ datedebut: offre.datedebut, datefin: offre.datefin }">Choisir</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+    
+    </div>
+    
+
+
+        </div>

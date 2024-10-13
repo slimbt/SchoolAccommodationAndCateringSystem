@@ -1,0 +1,50 @@
+<div id="services" class="our-services section" style="margin-top:-100px;">
+    <div class="services-right-dec">
+      <img src="assets/assets/images/services-right-dec.png" alt="">
+    </div>
+    <div class="container">
+      <div class="services-left-dec">
+        <img src="assets/assets/images/services-left-dec.png" alt="">
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading">
+            <h2>Des <em>Solutions </em> Adaptées  <span>À Vos Besoins</span></h2>
+            <span>Nos Services</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- <div class="">
+
+            <div *ngFor="let item of items" class="item">
+              
+              <h4>{{item.title}}</h4>
+              <div class="icon"><img src="assets/images/service-icon-01.png" alt=""></div>
+              <p>{{item.description}}</p>
+            </div>
+           
+          </div> -->
+
+          <p-carousel #pCarousel [value]="items" [numVisible]="3" [numScroll]="1" [circular]="true" 
+           [autoplayInterval]="4000">
+            <ng-template let-item pTemplate="item">
+                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 item">
+                    <div class="mb-3">
+                        <img [src]="item.image" [alt]="item.title" class="w-6 shadow-2" 
+                        style="width: 45px; height: 45px" />
+                    </div>
+                    <div>
+                        <h4 class="mb-1">{{ item.title }}</h4>
+                        <h6 class="mt-0 mb-3">{{ item.description }}</h6>
+                        
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+
+        </div>
+      </div>
+    </div>
+  </div>

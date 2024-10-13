@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="row">
+      <!-- Première colonne -->
+      <div class="col-lg-2">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <!-- Vérification si employeeInfo et photoPath existent -->
+            <ng-container *ngIf="employeeInfo && employeeInfo.photoPath">
+              <!-- Si photoPath est défini, afficher l'image -->
+              <img src="assets/assets/images/{{ employeeInfo.photoPath }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            </ng-container>
+            <!-- Si photoPath n'est pas défini, utiliser une image par défaut -->
+            <ng-container *ngIf="!employeeInfo || !employeeInfo.photoPath">
+              <img src="assets/assets/images/pdp.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            </ng-container>
+            
+            <!-- Reste du contenu de la carte -->
+            <h4 class="my-3"><strong>{{ employeeInfo?.nom }} {{ employeeInfo?.prenom }}</strong></h4>
+            <div class="container">
+              <div class="row">
+                <a routerLink="/heb">
+                  <button type="button" class="btn btn-warning">Liste Hébergement </button>
+                </a>
+                <a routerLink="/res">
+                  <button type="button" class="btn btn-warning">Liste Restauration</button>
+                </a>
+                <a routerLink="/rec">
+                  <button type="button" class="btn btn-warning">Liste Réclamation</button>
+                </a>
+                <li *ngIf="isLoggedIn" class="nav-item">
+                  <button class="btn btn-danger" (click)="logout()">
+                     
+                      Déconnexion
+                  </button>
+              </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin de la première colonne -->
+    
+      <!-- Colonnes pour les composants chart -->
+      <div class="col-lg-4 ml-lg-auto">
+        <div class="mt-4">
+          <app-chart1 [data]="data1"></app-chart1>
+
+          <h4 class="text-center mt-2"><strong>Statistiques d'hébergements</strong></h4>
+        </div>
+      </div>
+      
+      
+      <div class="col-lg-4 ml-lg-auto">
+        <div class="mt-4">
+          <app-chart1 [data]="data2"></app-chart1>
+          <h4 class="text-center mt-2"><strong>Statistiques des restaurations</strong></h4>
+        </div>
+      </div>
+     
+    
+   
+    <app-tablepagination></app-tablepagination>
+
+  <app-table-pagination-restau></app-table-pagination-restau>
+      
+<app-table-pagination-rec></app-table-pagination-rec>
+  
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,68 @@
+
+<div id="pricing" class="pricing-tables">
+  <div class="tables-left-dec">
+      <img src="assets/assets/images/tables-left-dec.png" alt="">
+  </div>
+  <div class="tables-right-dec">
+      <img src="assets/assets/images/tables-right-dec.png" alt="">
+  </div>
+
+  <section class="vh-100">
+
+      <div class="container py-5 h-100">
+
+          <div class="row d-flex justify-content-center align-items-center h-100">
+
+              <div class="col col-xl-8">
+
+                  <div class="card shadow-lg rounded-lg p-4">
+                      <div class="row mb-3">
+                          <div class="col text-end">
+                              <a href="/" class="text-secondary small me-3">Page d'accueil</a>
+                              <a href="/parent" class="text-secondary small me-3">Autre demande</a>
+                          </div>
+                      </div>
+
+                      <div class="row g-0">
+                          <div class="col-md-6 d-flex align-items-center">
+                              <div class="card-body p-4 p-lg-5 text-black">
+                                  <h1 class="display-4 text-success mb-4"><strong>Félicitations!</strong></h1>
+                                  <h2 class="mb-4">Votre demande a été envoyée avec succès.</h2>
+                                  <div class="d-flex justify-content-center">
+                                      <img src="assets/assets/images/success.png" alt="Success Icon"
+                                          class="img-fluid">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card custom-card p-4">
+                              <div class="card-body text-dark">
+                                <ng-container *ngIf="!feedbackSubmitted; else thankYouMessage">
+                                  <h3 class="mb-4"><strong>Votre avis nous intéresse !</strong></h3>
+                                  <form (ngSubmit)="submitFeedback()">
+                                    <div class="mb-4">
+                                      <p-rating [(ngModel)]="rating"></p-rating>
+                                    </div>
+                                    <div class="mb-4">
+                                      <label for="feedback" class="form-label">Partagez votre feedback :</label>
+                                      <textarea id="feedback" class="form-control custom-textarea" rows="5" [(ngModel)]="feedback"></textarea>
+                                    </div>
+                                    <button class="btn btn-dark btn-lg btn-block btn-rose-clair" type="submit">Envoyer</button>
+                                  </form>
+                                </ng-container>
+                                <ng-template #thankYouMessage>
+                                  <h3 class="mb-4"><strong>Merci pour votre Feedback !</strong></h3>
+                                  <img src="assets/assets/images/fed.png" style="max-width: 100px; height: auto;">
+                                </ng-template>
+                              </div>
+                            </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div> 
+<app-feedbck></app-feedbck>

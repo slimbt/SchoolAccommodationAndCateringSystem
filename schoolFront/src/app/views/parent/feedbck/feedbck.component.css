@@ -1,0 +1,17 @@
+.yellow {
+    color: gold; /* Couleur jaune pour les étoiles */
+  }
+  .item {
+    background-color: #f5f5f5; /* Couleur de fond */
+    border: 1px solid #ddd; /* Bordure grise */
+    border-radius: 8px; /* Coins arrondis */
+    
+    padding: 20px; /* Espacement intérieur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    transition: transform 0.3s ease; /* Animation de transformation */
+  }
+  
+  .item:hover {
+    transform: translateY(-5px); /* Animation de survol */
+  }
+  

@@ -1,0 +1,171 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Formulaire -->
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Formulaire d'Inscription</h4>
+                        <p class="card-category">Inscrivez un nouveau membre d'équipe</p>
+                    </div>
+                    <div class="card-body">
+                        <form #ajoutEmployeeForm="ngForm" (ngSubmit)="addEmployee(); ajoutEmployeeForm.resetForm()" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="inputUsername" class="text-success"> <strong>Nom d'utilisateur</strong>  </label>
+                                    <input type="text" [(ngModel)]="employeeForm.username" class="form-control" id="inputUsername" name="username" placeholder="Nom d'utilisateur" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutEmployeeForm.controls['username']?.invalid && (ajoutEmployeeForm.controls['username']?.dirty || ajoutEmployeeForm.controls['username']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['username']?.errors?.required">Username est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['username']?.errors?.pattern">Username doit contenir uniquement des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputEmail" class="text-success"> <strong>Email</strong>  </label>
+                                    <input type="email" [(ngModel)]="employeeForm.email" class="form-control" id="inputEmail" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                    <div *ngIf="ajoutEmployeeForm.controls['email']?.invalid && (ajoutEmployeeForm.controls['email']?.dirty || ajoutEmployeeForm.controls['email']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['email']?.errors?.required">Email est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['email']?.errors?.pattern">Email invalide.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputPassword" class="text-success"> <strong>Mot de passe</strong>  </label>
+                                    <input type="password" [(ngModel)]="employeeForm.password" class="form-control" id="inputPassword" name="password" placeholder="Mot de passe" required minlength="8" maxlength="20">
+                                    <div *ngIf="ajoutEmployeeForm.controls['password']?.invalid && (ajoutEmployeeForm.controls['password']?.dirty || ajoutEmployeeForm.controls['password']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['password']?.errors?.required">Password est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['password']?.errors?.minlength">Le mot de passe doit contenir au moins 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['password']?.errors?.maxlength">Le mot de passe ne peut pas dépasser 20 caractères.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputNom" class="text-success"> <strong>Nom</strong>  </label>
+                                    <input type="text" [(ngModel)]="employeeForm.nom" class="form-control" id="inputNom" name="nom" placeholder="Nom" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutEmployeeForm.controls['nom']?.invalid && (ajoutEmployeeForm.controls['nom']?.dirty || ajoutEmployeeForm.controls['nom']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['nom']?.errors?.required">Nom est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['nom']?.errors?.pattern">Nom doit contenir uniquement des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputPrenom" class="text-success"> <strong>Prénom</strong>    </label>
+                                    <input type="text" [(ngModel)]="employeeForm.prenom" class="form-control" id="inputPrenom" name="prenom" placeholder="Prénom" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutEmployeeForm.controls['prenom']?.invalid && (ajoutEmployeeForm.controls['prenom']?.dirty || ajoutEmployeeForm.controls['prenom']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['prenom']?.errors?.required">Prénom est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['prenom']?.errors?.pattern">Prénom doit contenir uniquement des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputCIN" class="text-success"> <strong>CIN</strong>  </label>
+                                    <input type="text" [(ngModel)]="employeeForm.cin" class="form-control" id="inputCIN" name="cin" placeholder="CIN" required pattern="^[0-9]+$" minlength="8" maxlength="8">
+                                    <div *ngIf="ajoutEmployeeForm.controls['cin']?.invalid && (ajoutEmployeeForm.controls['cin']?.dirty || ajoutEmployeeForm.controls['cin']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['cin']?.errors?.required">CIN est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['cin']?.errors?.minlength">CIN doit contenir au moins 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['cin']?.errors?.maxlength">CIN ne peut pas dépasser 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['cin']?.errors?.pattern">CIN doit contenir uniquement des chiffres.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputPoste" class="text-success"> <strong>Poste</strong>   </label>
+                                    <input type="text" [(ngModel)]="employeeForm.poste" class="form-control" id="inputPoste" name="poste" placeholder="Poste" required pattern="^[a-zA-Z\s]+$">
+                                    <div *ngIf="ajoutEmployeeForm.controls['poste']?.invalid && (ajoutEmployeeForm.controls['poste']?.dirty || ajoutEmployeeForm.controls['poste']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['poste']?.errors?.required">Poste est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['poste']?.errors?.pattern">Poste doit contenir uniquement des caractères alphabétiques.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="inputTelephone" class="text-success"> <strong>Téléphone</strong> </label>
+                                    <input type="text" [(ngModel)]="employeeForm.telephone" class="form-control" id="inputTelephone" name="telephone" placeholder="Téléphone" required pattern="^[0-9]+$" minlength="8" maxlength="8">
+                                    <div *ngIf="ajoutEmployeeForm.controls['telephone']?.invalid && (ajoutEmployeeForm.controls['telephone']?.dirty || ajoutEmployeeForm.controls['telephone']?.touched)">
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['telephone']?.errors?.required">Téléphone est requis.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['telephone']?.errors?.minlength">Téléphone doit contenir au moins 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['telephone']?.errors?.maxlength">Téléphone ne peut pas dépasser 8 caractères.</div>
+                                        <div class="text-danger" *ngIf="ajoutEmployeeForm.controls['telephone']?.errors?.pattern">Téléphone doit contenir uniquement des chiffres.</div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Ajout de la marge à gauche pour espacer de l'input Téléphone -->
+                                <div class="form-group custom-file-upload ml-2">
+                                    <label for="imageFile" class="text-success"><strong>Photo de profil</strong></label>
+                                    <input id="imageFile" name="imageFile" type="file" (change)="onPhotoChange($event, fileLabel)" #fileInput>
+                                    <span class="file-label" #fileLabel>Choisissez un fichier...</span>
+                                  </div>
+                                  
+                                <div class="form-group col-12 text-center mt-4">
+                                    <button type="submit" [disabled]="!ajoutEmployeeForm.valid" class="btn btn-success">
+                                        Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+               
+                <!-- Tableau des employés -->
+                <div class="card">
+                    <div class="card-header card-header-danger d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title mb-0">Liste des membres d'équipe</h4>
+                            <p class="card-category">Consultez les détails des membres d'équipe</p>
+                        </div>
+                        <!-- Search form -->
+                        <div class="md-form active-cyan active-cyan-2 mb-0">
+                            <input class="form-control search-input" type="text" [(ngModel)]="term" placeholder="Rechercher" aria-label="Rechercher">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="text-primary">
+                                    <th class="text-center text-danger">  <strong>Nom d'utilisateur</strong></th>
+                                    <th class="text-center text-danger"> <strong>Email</strong></th>
+                                    <th class="text-center text-danger">  <strong>Nom</strong></th>
+                                    <th class="text-center text-danger"> <strong>Prénom</strong></th>
+                                    <th class="text-center text-danger">   <strong>CIN</strong></th>
+                                    <th class="text-center text-danger">  <strong>Poste</strong></th>
+                                    <th class="text-center text-danger">  <strong>Téléphone</strong></th>
+                                    <th class="text-center text-danger"> <strong>Actions</strong></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let e of emps | filetrage:term; let i = index ">
+                                        <ng-container *ngIf="!e.isEdit; else editRow">
+                                            <td class="text-center">{{ e.username }}</td>
+                                            <td class="text-center">{{ e.email }}</td>
+                                            <td class="text-center">{{ e.nom }}</td>
+                                            <td class="text-center">{{ e.prenom }}</td>
+                                            <td class="text-center">{{ e.cin }}</td>
+                                            <td class="text-center">{{ e.poste }}</td>
+                                            <td class="text-center">{{ e.telephone }}</td>
+                                            <td class="td-actions text-center">
+                                                <button mat-raised-button type="button" matTooltip="Modifier" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEdit(e)">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button mat-raised-button type="button" matTooltip="Supprimer" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="confirmDeleteEmployee(e.id)">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                        <ng-template #editRow>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.username" required pattern="^[a-zA-Z\s]+$"></td>
+                                            <td><input type="email" class="form-control" [(ngModel)]="e.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.nom" required pattern="^[a-zA-Z\s]+$"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.prenom" required pattern="^[a-zA-Z\s]+$"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.cin" required pattern="^[0-9]+$" minlength="8" maxlength="8"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.poste" required pattern="^[a-zA-Z\s]+$"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="e.telephone" required pattern="^[0-9]+$" minlength="8" maxlength="8"></td>
+                                            <td class="td-actions text-center">
+                                                <button mat-raised-button type="button" matTooltip="Enregistrer" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onUpdate(e)">
+                                                    <i class="material-icons">save</i>
+                                                </button>
+                                                <button mat-raised-button type="button" matTooltip="Annuler" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon" (click)="onCancel(e)">
+                                                    <i class="material-icons">cancel</i>
+                                                </button>
+                                            </td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

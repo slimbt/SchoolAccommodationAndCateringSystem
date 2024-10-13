@@ -1,0 +1,305 @@
+
+
+
+<section style="background-color: #eee; margin-top: 100px; margin-bottom: 50px;">
+    <div class="container py-5 border border-dark rounded"> <!-- Ajout des classes border et rounded -->
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">Bienvenue cher parent dans votre espace !</h2>
+                    <div class="d-flex">
+                        <button class="btn btn-primary btn-rounded "[routerLink]="['/formulaire-h']">Demander hébergement</button>
+                        <button class="btn btn-info btn-rounded" [routerLink]="['/formulaire-r']">Demander restauration</button>
+                        <button class="btn btn-light btn-rounded" [routerLink]="['/reclamation']">Envoyer réclamation</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    
+      
+      
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <ng-container *ngIf="parentInfo">
+                  <!-- Vérifie si photoPath est défini -->
+                  <img *ngIf="parentInfo.photoPath" src="assets/assets/images/{{ parentInfo.photoPath }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                  <!-- Si photoPath est null, utilise un chemin par défaut -->
+                  <img *ngIf="!parentInfo.photoPath" src="assets/assets/images/pdp.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                  <h3 class="my-3">
+                    <span class="bold-text" style="margin-right: 10px;">{{ parentInfo.prenom }}</span>
+                    <span class="bold-text">{{ parentInfo.nom }}</span>
+                  </h3>
+                </ng-container>
+                  
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      
+                <p><strong>CIN :</strong></p> <p class="text-muted mb-4">  {{parentInfo?.cin}} </p>
+                <p><strong>Profession :</strong></p> <p class="text-muted mb-1">   {{parentInfo?.profession}}</p>
+                <p><strong>Adresse :</strong></p> <p class="text-muted mb-1">   {{parentInfo?.adresse}}</p>
+                <p><strong>Téléphone :</strong></p><p class="text-muted mb-1">   {{parentInfo?.telephone}}</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="d-flex justify-content-center mb-2">
+                  <button type="button" class="btn btn-primary">Editer</button>
+               
+                </div>
+              </div>
+            </div>
+
+          
+            <div class="card mb-4 mb-lg-0">
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush rounded-3">
+                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fas fa-globe fa-lg text-warning"></i>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalR" disabled>Messages et Notifications </button>
+  
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalH" disabled>Informations d'hébergement</button>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalR" disabled>Informations de restauration </button>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalR" disabled>Paiement et Facturation</button>
+  
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+        </div>
+    
+
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-12 mt-4 custom-scrollbar">
+            <table class="table align-middle mb-0 bg-white">
+              <thead class="bg-light">
+                <tr>
+                  <th style="width: 30%;"> <strong> Nom & prénom </strong>   </th>
+                  <th style="width: 20%;"> <strong> École  </strong> </th>
+                  <th style="width: 15%;"> <strong> Niveau scolaire  </strong> </th>
+                  <th style="width: 15%; "> <strong >  Date Naissance  </strong></th>
+                  <th style="width: 10%;" class="actions-th"><strong>Actions</strong></th>
+                  <th style="width: 10%;">    
+                    <button mat-button
+                            type="button"
+                            matTooltip="Retour"
+                            [matTooltipPosition]="'above'"
+                            class="mat-button mat-primary btn-with-image custom-button float-end"> <!-- Ajoutez la classe 'float-end' pour placer à droite -->
+                        <img src="assets/assets/images/retour.png" alt="Retour" class="img-fluid"
+                             (click)="navigateToParent()">
+                    </button>
+               
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let eleve of eleves" >
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                            src="assets/assets/images/student.png"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                            />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">{{eleve.nom}} {{eleve.prenom}}</p>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">{{eleve.ecole}}</p>
+                     
+                    </td>
+                   
+                    <td> <p class="fw-normal mb-1">{{eleve.niveau}}</p></td>
+
+                    <td>
+                      <span class="fw-normal mb-1">{{eleve.datenaissance}}</span>
+                    </td>
+                    <td>
+                     
+                      <button type="button" class="btn btn-danger btn-sm btn-rounded custom-btn-width" (click)="confirmDeleteEleve(eleve.id)">
+                        Supprimer
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm btn-rounded custom-btn-width" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showDetails(eleve)">
+                        Détails
+                      </button>
+                      
+                    </td>
+                  </tr>
+                
+                <!--
+                 
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                            />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">Slim ben turkia</p>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">Jeanne d'arc</p>
+                     
+                    </td>
+                   
+                    <td>2ème année</td>
+
+                    <td>
+                      <span class="badge badge-warning rounded-pill d-inline">En cours..</span>
+                    </td>
+                    <td>
+                     
+                      <button type="button" class="btn btn-danger btn-sm btn-rounded custom-btn-width">
+                        Supprimer
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm btn-rounded custom-btn-width">
+                        Détails
+                      </button>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                            />
+                        <div class="ms-3">
+                          <p class="fw-bold mb-1">Slim ben turkia</p>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="fw-normal mb-1">ibn rochd</p>
+                     
+                    </td>
+                   
+                    <td>5ème année</td>
+
+                    <td>
+                      <span class="badge badge-primary rounded-pill d-inline"
+                            >Vérification..</span
+                        >
+                    </td>
+
+                    <td>
+                     
+                      <button type="button" class="btn btn-danger btn-sm btn-rounded custom-btn-width">
+                        Supprimer
+                      </button>
+                      <button type="button" class="btn btn-warning btn-sm btn-rounded custom-btn-width">
+                        Détails
+                      </button>
+                      
+                    </td>
+                  </tr>-->
+                
+              </tbody>
+            </table>
+          </div>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Détails de l'élève</strong></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                          <div class="col">
+                            <p class="custom-text"><strong class="blue-text">Nom & Prénom:</strong> <span> {{ selectedEleve.nom }} {{ selectedEleve.prenom }}</span></p>
+                            <p class="custom-text"><strong class="blue-text">École:</strong> <span> {{ selectedEleve.ecole }}</span></p>
+                            <p class="custom-text"><strong class="blue-text">Niveau Scolaire:</strong> <span> {{ selectedEleve.niveau }}</span></p>
+                            <p class="custom-text"><strong class="blue-text">Date de naissance:</strong> <span> {{ selectedEleve.datenaissance }}</span></p>
+                            <p class="custom-text"><strong class="blue-text">Sexe:</strong> <span> {{ selectedEleve.sexe }}</span></p>
+                            <p class="custom-text"><strong class="blue-text">Adresse:</strong> <span> {{ selectedEleve.adresse }}</span></p>
+                        </div>
+                        
+                        
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+          
+          
+          
+              </div>
+            </div>
+              <!-- Section des boutons -->
+            
+            </div>
+          </div>
+       
+     
+      
+      
+   
+  
+
+          <div class="row">
+            <div class="col-lg-4 offset-lg-5"> 
+                <div id="carouselExampleCaptions" class="carousel slide carousel-custom" data-bs-ride="carousel" style="margin-top: -35rem;">
+                    <div class="carousel-indicators">
+                        <button *ngFor="let image of images; let i = index" type="button" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i" [class.active]="i === 0" aria-current="true" aria-label="Slide {{ i + 1 }}"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === 0">
+                            <img [src]="image.itemImageSrc" class="d-block w-100 mx-auto" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="image-overlay"></div>
+                                <h5 style="color: rgb(0, 213, 255);"><strong>{{ image.title }}</strong></h5>
+                                <button (click)="showDescription = !showDescription" class="btn btn-light">Savoir plus</button>
+                                <p *ngIf="showDescription">{{ image.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        
+</section>
+

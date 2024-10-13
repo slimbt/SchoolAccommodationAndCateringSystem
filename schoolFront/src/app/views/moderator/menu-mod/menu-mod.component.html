@@ -1,0 +1,377 @@
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+  
+      <!-- Colonne pour la première carte d'informations d'employé -->
+      <div class="col-lg-2">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="assets/assets/images/ena.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h4 class="my-3"><strong>Employee 1</strong></h4>
+            <div class="container">
+              <div class="row">
+                <button type="button" class="btn btn-warning">Liste Hebergement </button>
+                <button type="button" class="btn btn-warning">Liste Restauration</button>
+                <button type="button" class="btn btn-warning">Liste Payement</button>
+                <button type="button" class="btn btn-warning">Liste Reclamation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Colonne pour le premier tableau de statistiques des employés -->
+      <div class="col-lg-5 col-md-12 mt-4">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Liste des demandes en attente de paiement</h4>
+            <p class="card-category">Envoyer un rappel avec un délai de trois jours </p>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <tr>
+                  <th>ID</th>
+                  <th>Nom & prénom</th>
+                  <th>Montant</th>
+                  <th>Avertissement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Dakota Rice</td>
+                  <td>$36,738</td>
+                  <td>  <button>  Avertisser</button>     </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Minerva Hooper</td>
+                  <td>$23,789</td>
+                  <td>Curaçao</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Sage Rodriguez</td>
+                  <td>$56,142</td>
+                  <td>Netherlands</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Philip Chaney</td>
+                  <td>$38,735</td>
+                  <td>Korea, South</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Jane Smith</td>
+                  <td>$55,000</td>
+                  <td>Canada</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Colonne pour le deuxième tableau de statistiques des employés -->
+      <div class="col-lg-5 col-md-12 mt-4">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title">Liste des élèves inscrits</h4>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <tr>
+                  <th>ID</th>
+                  <th>Nom & prénom</th>
+                  <th>Ecole</th>
+                  <th>Niveau scolaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5</td>
+                  <td>John Doe</td>
+                  <td>msb</td>
+                  <td>United States</td>
+                 
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Jane Smith</td>
+                  <td>msb</td>
+                  <td>Canada</td>
+              
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Michael Johnson</td>
+                  <td>msb</td>
+                  <td>Australia</td>
+                  
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Emily Brown</td>
+                  <td>msb</td>
+                  <td>United Kingdom</td>
+                  
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Jane Smith</td>
+                  <td>msb</td>
+                  <td>Canada</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+    
+  
+  
+      <app-tablepagination></app-tablepagination>
+  
+      
+        <div class="col-lg-10 mt-4">
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+              <tr>
+                <th>Nom Parent</th>
+                <th>Elève</th>
+                <th>Status</th>
+                <th>Demande</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Slim ben turkia</p>
+                        <p class="text-muted mb-0">slim.bturkia@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Moataz znaidi</p>
+                    <p class="text-muted mb-0">collège kelibia</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                  </td>
+                  <td>Hebergement</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm btn-rounded">
+                      Accepter
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-rounded">
+                      Refuser
+                    </button>
+                    <button type="button" class="btn btn-warning btn-sm btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Slim ben turkia</p>
+                        <p class="text-muted mb-0">slim.bturkia@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Moataz znaidi</p>
+                    <p class="text-muted mb-0">collège kelibia</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                  </td>
+                  <td>Hebergement</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm btn-rounded">
+                      Accepter
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-rounded">
+                      Refuser
+                    </button>
+                    <button type="button" class="btn btn-warning btn-sm btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Slim ben turkia</p>
+                        <p class="text-muted mb-0">slim.bturkia@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Moataz znaidi</p>
+                    <p class="text-muted mb-0">collège kelibia</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                  </td>
+                  <td>Hebergement</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm btn-rounded">
+                      Accepter
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-rounded">
+                      Refuser
+                    </button>
+                    <button type="button" class="btn btn-warning btn-sm btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          class="rounded-circle"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Slim ben turkia</p>
+                        <p class="text-muted mb-0">slim.bturkia@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Moataz znaidi</p>
+                    <p class="text-muted mb-0">collège kelibia</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                  </td>
+                  <td>Hebergement</td>
+                  <td>
+                    <button type="button" class="btn btn-success btn-sm btn-rounded">
+                      Accepter
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-rounded">
+                      Refuser
+                    </button>
+                    <button type="button" class="btn btn-warning btn-sm btn-rounded">
+                      Info
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/6.jpg"
+                          class="rounded-circle"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Alex Ray</p>
+                        <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Consultant</p>
+                    <p class="text-muted mb-0">Finance</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-primary rounded-pill d-inline"
+                          >Onboarding</span
+                      >
+                  </td>
+                  <td>Junior</td>
+                  <td>
+                    <button
+                            type="button"
+                            class="btn btn-link btn-rounded btn-sm fw-bold"
+                            data-mdb-ripple-color="dark"
+                            >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                          src="https://mdbootstrap.com/img/new/avatars/7.jpg"
+                          class="rounded-circle"
+                          alt=""
+                          style="width: 45px; height: 45px"
+                          />
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">Kate Hunington</p>
+                        <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-normal mb-1">Designer</p>
+                    <p class="text-muted mb-0">UI/UX</p>
+                  </td>
+                  <td>
+                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                  </td>
+                  <td>Senior</td>
+                  <td>
+                    <button
+                            type="button"
+                            class="btn btn-link btn-rounded btn-sm fw-bold"
+                            data-mdb-ripple-color="dark"
+                            >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    
+    <router-outlet></router-outlet>
+  

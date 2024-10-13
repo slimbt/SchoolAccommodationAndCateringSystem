@@ -1,0 +1,123 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Ajouter une nouvelle actualité</h4>
+                        <p class="card-category">saisir les informations de l'actualité</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                              <label for="title" class="text-success"><strong>Titre</strong></label>
+                              <input id="title" formControlName="title" type="text" class="form-control" placeholder="Titre" />
+                              <div *ngIf="imageForm.get('title').invalid && imageForm.get('title').touched" class="text-danger">
+                                Le titre est obligatoire.
+                              </div>
+                            </div>
+              
+                            <div class="form-group">
+                              <label for="description" class="text-success"><strong>Description</strong></label>
+                              <textarea id="description" formControlName="description" class="form-control" placeholder="Description"></textarea>
+                              <div *ngIf="imageForm.get('description').invalid && imageForm.get('description').touched" class="text-danger">
+                                La description est obligatoire.
+                              </div>
+                            </div>
+              
+                            <div class="form-group custom-file-upload">
+                              <label for="imageFile" class="text-success"><strong>Image</strong></label>
+                              <input id="imageFile" name="imageFile" type="file" (change)="onFileChange($event, false)" />
+                              <span class="file-label">Choisissez un fichier...</span>
+                              <div *ngIf="imageForm.get('imageFile').invalid && imageForm.get('imageFile').touched" class="text-danger">
+                                L'image est obligatoire.
+                              </div>
+                            </div>
+              
+                            <div class="form-group custom-file-upload">
+                              <label for="thumbnailFile" class="text-success"><strong>Image de sélection</strong></label>
+                              <input id="thumbnailFile" name="thumbnailFile" type="file" (change)="onFileChange($event, true)" />
+                              <span class="file-label">Choisissez un fichier...</span>
+                              <div *ngIf="imageForm.get('thumbnailFile').invalid && imageForm.get('thumbnailFile').touched" class="text-danger">
+                                L'image de sélection est obligatoire.
+                              </div>
+                            </div>
+              
+                            <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-success" [disabled]="imageForm.invalid">Ajouter</button>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+  
+                <!-- Table to display images -->
+                <div class="card mt-4">
+                    <div class="card-header card-header-info d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title mb-0">Liste des Images</h4>
+                            <p class="card-category">Consultez les détails des images</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead class="text-primary">
+                                    <th class="text-center text-info"><strong>Titre</strong></th>
+                                    <th class="text-center text-info"><strong>Description</strong></th>
+                                    <th class="text-center text-info"><strong>Image</strong></th>
+                                    <th class="text-center text-info"><strong>Image de sélection</strong></th>
+                                    <th class="text-center text-info"><strong>Date de création</strong></th>
+                                    <th class="text-center text-info"><strong>Actions</strong></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let image of images">
+                                        <ng-container *ngIf="!image.isEdit; else editRow">
+                                            <td class="text-center">{{ image.title }}</td>
+                                            <td class="text-center">{{ image.description }}</td>
+                                            <td class="text-center"><img [src]="image.itemImageSrc" alt="Image" class="img-item"></td>
+                                            <td class="text-center"><img [src]="image.thumbnailImageSrc" alt="Thumbnail" class="img-thumbnail"></td>
+                                            <td class="text-center">{{ image.createdAt | date:'short' }}</td>
+                                            <td class="td-actions text-center">
+                                                <button mat-raised-button type="button" matTooltip="Modifier" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEdit(image)">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button mat-raised-button type="button" matTooltip="Supprimer" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="confirmDeleteImage(image.id)">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </td>
+                                        </ng-container>
+                                        <ng-template #editRow>
+                                            <td><input type="text" class="form-control" [(ngModel)]="image.title"></td>
+                                            <td><input type="text" class="form-control" [(ngModel)]="image.description"></td>
+                                            <td class="text-center">
+                                                <input type="file" (change)="onImageChange($event, image)" class="d-none" id="editImageInput{{image.id}}">
+                                                <label for="editImageInput{{image.id}}" class="btn btn-info btn-sm">Choisir une image</label>
+                                                <img [src]="image.newItemImageSrc || image.itemImageSrc" alt="Image" class="img-item mt-2">
+                                            </td>
+                                            <td class="text-center">
+                                                <input type="file" (change)="onThumbnailChange($event, image)" class="d-none" id="editThumbnailInput{{image.id}}">
+                                                <label for="editThumbnailInput{{image.id}}" class="btn btn-info btn-sm">Choisir un thumbnail</label>
+                                                <img [src]="image.newThumbnailImageSrc || image.thumbnailImageSrc" alt="Thumbnail" class="img-thumbnail mt-2">
+                                            </td>
+                                            <td class="text-center">{{ image.createdAt | date:'short' }}</td>
+                                            <td class="td-actions text-center">
+                                                <button mat-raised-button type="button" matTooltip="Enregistrer" [matTooltipPosition]="'above'" class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onUpdate(image)">
+                                                    <i class="material-icons">save</i>
+                                                </button>
+                                                <button mat-raised-button type="button" matTooltip="Annuler" [matTooltipPosition]="'above'" class="btn btn-warning btn-link btn-sm btn-just-icon" (click)="onCancel(image)">
+                                                    <i class="material-icons">cancel</i>
+                                                </button>
+                                            </td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+  
+            </div>
+        </div>
+    </div>
+  </div>
+  

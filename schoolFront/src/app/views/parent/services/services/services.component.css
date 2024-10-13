@@ -1,0 +1,7 @@
+.item {
+    background-color: #e8e8e8;
+    /* border: 80px solid #d32222;/ */
+    border-width: 20px;
+    border-color: rgb(115, 181, 216);
+    border-style: solid;
+}

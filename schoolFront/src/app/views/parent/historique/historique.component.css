@@ -1,0 +1,43 @@
+.table-title {
+    color: #fff; /* Couleur du texte */
+    background-color: #007bff; /* Couleur de fond */
+    padding: 10px; /* Espacement interne */
+    border-radius: 5px 5px 0 0; /* Bordure arrondie uniquement en haut */
+  }
+  
+  .table-content {
+    border: 1px solid #ddd; /* Bordure du tableau */
+    border-top: none; /* Suppression de la bordure supérieure pour éviter les doublons */
+    border-radius: 0 0 5px 5px; /* Bordure arrondie uniquement en bas */
+  }
+  
+  .table-content th {
+    background-color: #f8f9fa; /* Couleur de fond des en-têtes */
+    border: none; /* Suppression de la bordure des en-têtes */
+  }
+  
+  .table-content td, .table-content th {
+    padding: 12px 15px; /* Espacement interne des cellules */
+  }
+  .table-title-restauration {
+    color: #fff; /* Couleur du texte */
+    background-color: #5cb2da; /* Couleur de fond */
+    padding: 10px; /* Espacement interne */
+    border-radius: 5px 5px 0 0; /* Bordure arrondie uniquement en haut */
+  }
+  
+  .table-content-restauration {
+    border: 1px solid #ddd; /* Bordure du tableau */
+    border-top: none; /* Suppression de la bordure supérieure pour éviter les doublons */
+    border-radius: 0 0 5px 5px; /* Bordure arrondie uniquement en bas */
+  }
+  
+  .table-content-restauration th {
+    background-color: #f8f9fa; /* Couleur de fond des en-têtes */
+    border: none; /* Suppression de la bordure des en-têtes */
+  }
+  
+  .table-content-restauration td, .table-content-restauration th {
+    padding: 12px 15px; /* Espacement interne des cellules */
+  }
+  

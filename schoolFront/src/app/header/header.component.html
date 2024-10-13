@@ -1,0 +1,41 @@
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="index.html" class="logo">
+            <img src="assets/assets/images/loglog.png" width="80" height="25" style="margin-left: -100px; margin-top: -50px;">
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav" style="margin-left: -30px;">
+            <li class="scroll-to-section"><a routerLink="/" class="active"><strong>Accueil</strong></a></li>
+            <li class="scroll-to-section services-dropdown">
+              <a routerLink="/services"><strong>Services</strong></a>
+            </li>
+            <li class="scroll-to-section"><a routerLink="/about"><strong>A propos de nous</strong></a></li>
+            <li class="scroll-to-section"><a routerLink="/portfolio"><strong>Actualités</strong></a></li>
+            <li class="scroll-to-section"><a routerLink="/video"><strong>Videos</strong></a></li>
+            <li class="scroll-to-section"><a routerLink="/contact"><strong>Contactez nous</strong></a></li>
+            <!-- ***** Ajout des éléments d'authentification ***** -->
+            <li class="scroll-to-section"  *ngIf="isLoggedIn">
+              <a href="/profile" class="page-scroll">{{ username }}</a>
+            </li>
+           
+            <li *ngIf="!isLoggedIn">
+              <div class="main-red-button-hover"><a routerLink="/login">Connexion</a></div>
+            </li>
+            <li *ngIf="isLoggedIn">
+              <div class="main-red-button-hover"><a href="#" class="scroll-to-section" (click)="logout()">Logout</a></div>
+            </li>
+            <!-- ***** Fin des éléments d'authentification ***** -->
+        
+          </ul>
+          <a class='menu-trigger'><span>Menu</span></a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

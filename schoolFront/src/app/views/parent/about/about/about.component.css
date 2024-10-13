@@ -1,0 +1,52 @@
+.fact-item-container {
+  margin-bottom: 10px; /* Réduit la marge inférieure pour espacer verticalement les éléments */
+  display: flex;
+}
+
+.fact-item {
+  flex: 1; /* Assure une taille uniforme pour chaque élément .fact-item */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.count-area-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px; /* Ajoute un peu de padding pour le confort visuel */
+  border: 2px solid rgb(0, 106, 255); /* Ajoute une bordure orange en gras pour le cadre */
+  border-radius: 5px; /* Arrondit les coins du cadre */
+  background-color: #f9f9f9; /* Ajoute une couleur de fond légère */
+  width: 100%; /* Assure que le contenu prend toute la largeur du conteneur */
+  height: 100%; /* Assure que le contenu prend toute la hauteur du conteneur */
+  box-sizing: border-box; /* Inclut la bordure et le padding dans la taille totale */
+}
+
+.count-area-content .icon {
+  margin-bottom: 5px; /* Réduit l'espace entre l'icône et le chiffre */
+}
+
+.count-area-content .count-digit {
+  margin-bottom: 5px; /* Réduit l'espace entre le chiffre et le titre */
+  font-size: 24px; /* Ajuste la taille de la police pour le chiffre */
+  font-weight: bold;
+}
+
+.count-area-content .count-title {
+  margin-bottom: 5px; /* Réduit l'espace entre le titre et le texte */
+  font-size: 18px; /* Ajuste la taille de la police pour le titre */
+  font-weight: 600;
+}
+
+.count-area-content p {
+  margin-bottom: 0; /* Supprime la marge inférieure du paragraphe */
+}
+
+.container-frame {
+  padding: 20px; /* Ajoute du padding autour du cadre */
+  border: 2px solid rgb(246, 130, 62); /* Ajoute une bordure orange en gras pour le cadre global */
+  border-radius: 10px; /* Arrondit les coins du cadre global */
+  background-color: #f0f0f0; /* Ajoute une couleur de fond légère pour le cadre global */
+}

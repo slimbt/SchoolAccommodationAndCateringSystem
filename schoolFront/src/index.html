@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <base href='/'>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href=".assets/assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href=".assets/assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!--mta pfefront-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>schoolFront</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+   
+
+<!--pfefront-->
+
+    <!-- Bootstrap core CSS -->
+  <link href="assets/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/assets/css/templatemo-onix-digital.css">
+  <link rel="stylesheet" href="assets/assets/css/animated.css">
+  <link rel="stylesheet" href="assets/assets/css/owl.css">
+ 
+
+
+</head>
+<body>
+
+  
+  <app-root>
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </app-root>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE"></script>
+  <script>window.global = window;</script>
+
+
+  <!--mta pfe front-->
+  <script src="assets/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/assets/js/owl-carousel.js"></script>
+  <script src="assets/assets/js/animation.js"></script>
+  <script src="assets/assets/js/imagesloaded.js"></script>
+  <script src="assets/assets/js/custom.js"></script>
+
+
+  <script>
+  // Acc
+    $(document).on("click", ".naccs .menu div", function() {
+      var numberIndex = $(this).index();
+
+      if (!$(this).is("active")) {
+          $(".naccs .menu div").removeClass("active");
+          $(".naccs ul li").removeClass("active");
+
+          $(this).addClass("active");
+          $(".naccs ul").find("li:eq(" + numberIndex + ")").addClass("active");
+
+          var listItemHeight = $(".naccs ul")
+            .find("li:eq(" + numberIndex + ")")
+            .innerHeight();
+          $(".naccs ul").height(listItemHeight + "px");
+        }
+    });
+  </script>
+
+
+<script>
+
+$(function(){
+  $('#datepicker').datepicker();
+
+});
+
+</script>
+
+
+
+
+<script>
+  // Votre script pour gérer le dropdown
+  document.addEventListener('DOMContentLoaded', function() {
+    const servicesLink = document.querySelector('.services-dropdown > a');
+    const submenu = document.querySelector('.services-dropdown .submenu');
+
+    if (servicesLink && submenu) {
+      servicesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (submenu.style.display === 'block') {
+          submenu.style.display = 'none';
+        } else {
+          submenu.style.display = 'block';
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+
+
+</html>

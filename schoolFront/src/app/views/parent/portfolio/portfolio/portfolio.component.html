@@ -1,0 +1,34 @@
+<div id="portfolio" class="our-portfolio section">
+    <div class="portfolio-left-dec">
+      <img src="assets/assets/images/portfolio-left-dec.png" alt="">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading">
+            <h2>Tenez-Vous <em>au </em>  Courant<span> chers parents</span></h2>
+            <span>Restez Informé(e)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+    <p-galleria #pTemplate [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '750px','margin': '0 auto' }" [numVisible]="6">
+      <ng-template pTemplate="item" let-item>
+        <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+          <img [src]="item.thumbnailImageSrc" style="display: block;" />
+        </div>
+      </ng-template>
+      
+      <ng-template pTemplate="caption" let-item>
+        <h4 style="margin-bottom: .5rem; color: #72ff4b;">{{ item.title }}</h4>
+        <p class="white-text">{{ item.description }}</p>
+        <p class="white-text">Ajoutée le: {{ item.createdAt | date: 'short' }}</p>
+      </ng-template>
+    </p-galleria>
+    
+  
